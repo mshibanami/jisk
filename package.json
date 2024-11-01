@@ -1,0 +1,16 @@
+{
+  "name": "sk",
+  "version": "1.0.0",
+  "description": "<https://mshibanami.github.io/sk>",
+  "main": "index.js",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  },
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
