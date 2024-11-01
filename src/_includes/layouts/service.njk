@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+</head>
+<body>
+  <header>
+    <h1>{{ title }}</h1>
+  </header>
+  <main>
+    <div id="status">
+      <span id="status-text"></span>
+    </div>
+
+    {{ content | safe }}
+    
+    <!-- Inline the contents of instances.js -->
+    <script type="module">
+      import { init, makeInstances } from '/assets/js/instances.js';
+
+      const serviceName = '{{ serviceName }}'
+      const rawInstances = {{ generated[serviceName].instances | dump | safe }}
+      const instances = makeInstances({ rawInstances, serviceName });
+      
+      // Configuration for the service
+      const config = {
+        instances: instances,
+        serviceName: serviceName,
+        cacheKey: '{{ cacheKey }}',
+        cacheExpiry: {{ cacheExpiry }},
+        statusTimeout: {{ statusTimeout }},
+      };
+
+      // Initialize the inlined script
+      if (typeof init === 'function') {
+        init(config);
+      } else {
+        console.error("Init function not found in instances.js");
+      }
+    </script>
+  </main>
+</body>
+</html>

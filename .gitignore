@@ -131,3 +131,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# End of https://raw.github.com/github/gitignore/76739a38b56907118c5a880d63250c99d5690a5a/Node.gitignore
+
+src/_data/generated
+src/assets/js/**/*.js
+playwright-report

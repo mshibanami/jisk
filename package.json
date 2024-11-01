@@ -2,15 +2,24 @@
   "name": "sk",
   "version": "1.0.0",
   "description": "<https://mshibanami.github.io/sk>",
-  "main": "index.js",
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0"
+    "@11ty/eleventy": "^3.0.0",
+    "@playwright/test": "1.48.2",
+    "@types/node": "^22.8.6",
+    "npm-run-all": "^4.1.5",
+    "expect-playwright": "^0.8.0",
+    "playwright": "^1.48.2",
+    "typescript": "^5.6.3"
   },
   "scripts": {
-    "build": "eleventy",
-    "start": "eleventy --serve"
+    "tsc-watch": "npx tsc --watch",
+    "serve-eleventy": "npx eleventy --serve",
+    "dev": "npx npm-run-all -p tsc-watch serve-eleventy",
+    "build": "npx tsc && npx eleventy",
+    "test": "npx tsc && npx playwright test",
+    "vscode-debug": "npx tsc && npx playwright test --config ./playwright.config.ts --workers=1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
