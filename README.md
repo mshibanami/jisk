@@ -49,6 +49,10 @@ This tool does not collect any personal information. No analytics or tracking is
 
 You can also host this tool by forking this repository and use it as your own.
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
+
 ## Acknowledgments
 
 I appreciate [@atutal](https://github.com/atutal) who gave me an inspiration to create this project [here](https://github.com/mshibanami/redirect-web/issues/61).
