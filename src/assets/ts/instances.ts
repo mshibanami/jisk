@@ -23,7 +23,6 @@ const ui = new Proxy(_ui, {
     }
 });
 
-
 export type ServiceName = 'redlib' | 'invidious';
 export type Status = 'idle' | 'loading' | 'success' | 'error';
 
