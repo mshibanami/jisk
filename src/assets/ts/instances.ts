@@ -92,7 +92,7 @@ function checkInstanceAvailability(instance: Instance, timeout: number): Promise
         const timer = setTimeout(() => {
             img.src = '';
             resolve(false);
-        }, timeout);
+        }, timeout * 1000);
 
         img.onload = () => {
             clearTimeout(timer);
