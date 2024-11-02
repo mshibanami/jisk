@@ -39,11 +39,13 @@ The instance list is embedded in the web page and refreshed everyday by GitHub A
 
 ## Query Parameters
 
-- `url`: The URL you want to redirect to the alternative web service. This should be URL-encoded.
-- `cache_expiry`: The cache expiry time in seconds. The default is 86400 seconds (1 day).
+You can specify the following query parameters for the redirection URL for each service:
+
+- `url`: The source URL you want to redirect to the alternative web service. This should be URL-encoded.
+- `cache_expiry`: The cache expiry time in seconds. The default is 86400 seconds (1 day). If you set it to `0`, the cache will not be used.
 - `auto_redirect`: If `false`, the page will not redirect automatically. It's also useful to debug the redirection. The default is `true`.
 
-## Privacy
+## Privacy Policy
 
 This tool does not collect any personal information. No analytics or tracking is used.
 
@@ -51,7 +53,7 @@ You can also host this tool by forking this repository and use it as your own.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
+This tool is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
 
 ## Acknowledgments
 
