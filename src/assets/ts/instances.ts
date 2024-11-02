@@ -1,5 +1,8 @@
 type Instance = {
     url: string;
+    region?: string; // ISO 3166-1 alpha-2 code (e.g. JP, TW, KO, CN)
+    uptime?: number; // Uptime percentage (0-100)
+    faviconUrl?: string;
 };
 
 type InstanceCache = {
@@ -7,8 +10,8 @@ type InstanceCache = {
     timestamp: number;
 };
 
-const _ui = {
-    type: 'idle' as Status,
+const _ui: { type: Status, message: string } = {
+    type: 'idle',
     message: ''
 }
 
@@ -97,7 +100,7 @@ function checkInstanceAvailability(instance: Instance, timeout: number): Promise
             resolve(false);
         };
 
-        img.src = `${instance.url}/favicon.ico`;
+        img.src = instance.faviconUrl ?? `${instance.url}/favicon.ico`;
     });
 }
 
@@ -179,11 +182,18 @@ export function makeInstances({ rawInstances, serviceName }: { rawInstances: any
         case 'redlib':
             return (rawInstances.instances as any[])
                 .map((instance: any) => {
-                    return { url: instance.url }
+                    return {
+                        url: instance.url,
+                        region: instance.country
+                    }
                 })
         case 'invidious':
             return (rawInstances as any[][]).map(([_, info]) => {
-                return { url: info.uri }
+                return {
+                    url: info.uri,
+                    region: info.region,
+                    faviconUrl: info.favicon_url
+                }
             })
         default:
             throw new Error('Invalid service name')
