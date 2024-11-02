@@ -1,69 +1,75 @@
-import { test, expect } from '@playwright/test';
-import { spawn } from 'child_process';
+import { test, expect, test as setup } from '@playwright/test';
+import { ChildProcess, spawn } from 'child_process';
+import { makeDestinationUrl, ServiceConfig, serviceConfig, ServiceName } from '../src/assets/ts/instances';
 
-let eleventyProcess;
-
-// Define mockServiceConfig within the test file
-const mockServiceConfig = {
-    instancesUrl: 'https://example.com/instances.json',
-    cacheKey: 'service_cache',
-    cacheExpiry: 86400000, // 24 hours in milliseconds
-    statusTimeout: 3000,
+type DestinationURLTestCase = {
+    instanceBaseUrl: string;
+    sourceUrl: string;
+    serviceName: ServiceName;
+    expected: string | Error;
 };
 
-test.beforeAll(async () => {
-    eleventyProcess = spawn('npm', ['run', 'dev'], { stdio: 'inherit' });
+let eleventyProcess: ChildProcess | null = null;
+let tscWatchProcess: ChildProcess | null = null;
+
+// Define mockServiceConfig within the test file
+const mockServiceConfig: Partial<ServiceConfig> = {
+    customCacheKey: 'service_cache',
+    cacheExpiry: 86400, // 24 hours in seconds
+    statusTimeout: 3,
+};
+
+setup('Start 11ty server', async () => {
+    eleventyProcess = spawn('npm', ['run', 'serve-eleventy'], { stdio: 'inherit' });
     await new Promise((resolve) => setTimeout(resolve, 3000));
 });
 
-test.afterAll(() => {
-    if (eleventyProcess) eleventyProcess.kill();
-});
+test.describe('Test for instances.ts', () => {
+    test('should return a valid service config', () => {
+        const config = serviceConfig(mockServiceConfig);
+        expect(config).toEqual(mockServiceConfig);
+    });
+
+    test('can make a destination URL', () => {
+        const instanceBaseUrl = 'https://example.com/';
+
+        const testCases: DestinationURLTestCase[] = [
+            {
+                instanceBaseUrl,
+                sourceUrl: 'https://www.reddit.com/r/privacy',
+                serviceName: 'redlib',
+                expected: 'https://example.com/r/privacy',
+            },
+            {
+                instanceBaseUrl,
+                sourceUrl: 'https://www.reddit.com/r/privacy/',
+                serviceName: 'invidious',
+                expected: Error('Not a valid URL'),
+            },
+        ]
+
+        for (const { instanceBaseUrl, sourceUrl, serviceName, expected } of testCases) {
+            try {
+                const destination = makeDestinationUrl({
+                    instanceBaseUrl,
+                    sourceUrl,
+                    serviceName,
+                });
+                expect(destination).toBe(expected);
+            } catch (error) {
+                expect(error).toEqual(expected);
+            }
+        }
+    })
+})
 
 test.describe('Redlib', () => {
-    test.beforeEach(async ({ page }) => {
-        await page.goto('http://localhost:8082/redlib'); // Adjust URL if needed
-    });
-
-    test('should redirect to available instance', async ({ page }) => {
-        // Mock the `fetch` response to simulate instance loading
-        await page.route('**/instances.json', route =>
-            route.fulfill({
-                contentType: 'application/json',
-                body: JSON.stringify({ instances: [{ url: 'https://instance1.com' }] })
-            })
-        );
-
-        // Move `init` logic directly into `page.evaluate` for browser context execution
-        await page.evaluate(({ config }) => {
-            function init(config) {
-                console.log('Init function with config:', config);
-                // Add actual init logic here if needed
-                // Example placeholder logic
-                console.log(`Redirecting to ${config.urlConverter('https://instance1.com', 'https://reddit.com')}`);
-            }
-
-            // Execute `init` with the provided configuration
-            init(config);
-        }, { config: mockServiceConfig });
-
-        await page.waitForTimeout(1000);
-        expect(page.url()).toContain('https://instance1.com/redirect');
-    });
-
-    test('should display status updates correctly', async ({ page }) => {
-        await expect(page.locator('#status-text')).toBeVisible();
-
-        await page.evaluate(() => {
-            const statusEl = document.getElementById('status');
-            const statusTextEl = document.getElementById('status-text');
-            if (statusEl && statusTextEl) {
-                statusEl.className = 'loading';
-                statusTextEl.textContent = 'Checking instances...';
-            }
-        });
-
-        const statusText = await page.locator('#status-text').textContent();
-        expect(statusText).toBe('Checking instances...');
+    test('should redirect to an instance', async ({ page }) => {
+        await page.goto(
+            'http://localhost:8080/redlib/?url=https://www.reddit.com/r/privacy',
+            { waitUntil: 'domcontentloaded' });
+        await page.waitForTimeout(40000);
+        // Should not include the domain of the local server
+        expect(page.url()).not.toMatch(/^http:\/\/localhost:/);
     });
 });

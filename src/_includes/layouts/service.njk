@@ -16,29 +16,20 @@
 
     {{ content | safe }}
     
-    <!-- Inline the contents of instances.js -->
     <script type="module">
-      import { init, makeInstances } from '/assets/js/instances.js';
+      import { startSearching, makeInstances } from '/assets/js/instances.js';
 
       const serviceName = '{{ serviceName }}'
       const rawInstances = {{ generated[serviceName].instances | dump | safe }}
       const instances = makeInstances({ rawInstances, serviceName });
-      
-      // Configuration for the service
       const config = {
         instances: instances,
         serviceName: serviceName,
-        cacheKey: '{{ cacheKey }}',
-        cacheExpiry: {{ cacheExpiry }},
-        statusTimeout: {{ statusTimeout }},
+        cacheKey: '{{ cacheKey | default('undefined') }}',
+        cacheExpiry: {{ cacheExpiry | default('undefined') }},
+        statusTimeout: {{ statusTimeout | default('undefined') }},
       };
-
-      // Initialize the inlined script
-      if (typeof init === 'function') {
-        init(config);
-      } else {
-        console.error("Init function not found in instances.js");
-      }
+      startSearching(config);
     </script>
   </main>
 </body>

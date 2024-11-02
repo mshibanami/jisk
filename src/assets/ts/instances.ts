@@ -2,45 +2,49 @@ type Instance = {
     url: string;
 };
 
-type ServiceName = 'redlib' | 'invidious';
-type Status = 'loading' | 'success' | 'error';
-
-interface ServiceConfig {
-    instances: Instance[];
-    cacheKey: string;
-    cacheExpiry: number;
-    statusTimeout: number;
-    serviceName: ServiceName;
-}
-
-const defaultConfig: Partial<ServiceConfig> = {
-    cacheExpiry: 24 * 60 * 60 * 1000, // 24 hours
-    statusTimeout: 3000               // 3 seconds
+type InstanceCache = {
+    instance: Instance;
+    timestamp: number;
 };
 
-// Utility function to merge defaults with overrides
-function createServiceConfig(overrides: Partial<ServiceConfig>): ServiceConfig {
+export type ServiceName = 'redlib' | 'invidious';
+export type Status = 'loading' | 'success' | 'error';
+
+export interface ServiceConfig {
+    instances: Instance[];
+    serviceName: ServiceName;
+    customCacheKey: string;
+    cacheExpiry: number;
+    statusTimeout: number;
+    autoRedirect: boolean;
+}
+
+export function serviceConfig(overrides: Partial<ServiceConfig>): ServiceConfig {
     return {
-        ...defaultConfig,
+        cacheExpiry: 24 * 60 * 60, // 24 hours
+        statusTimeout: 3, // 3 seconds
+        autoRedirect: true,
         ...overrides,
-        cacheExpiry: overrides.cacheExpiry ?? defaultConfig.cacheExpiry ?? 24 * 60 * 60 * 1000
     } as ServiceConfig;
 }
 
-// Cache management functions
-function getCachedInstances(config: ServiceConfig): Instance[] | null {
+function cacheKeyForService(config: ServiceConfig) {
+    return config.customCacheKey ?? `${config.serviceName}_cache`;
+}
+
+function cachedInstance(config: ServiceConfig): Instance | null {
+    const cacheKey = cacheKeyForService(config);
     try {
-        const cached = localStorage.getItem(config.cacheKey);
-        if (!cached) return null;
-
-        const { instances, timestamp } = JSON.parse(cached);
-
-        // Check if cache has expired
-        // if (Date.now() - timestamp > config.cacheExpiry) {
-        localStorage.removeItem(config.cacheKey);
-        return null;
-        // }
-
+        const cached = localStorage.getItem(cacheKey);
+        if (!cached) {
+            return null;
+        }
+        const { instances, timestamp } = JSON.parse(cached) satisfies InstanceCache;
+        const cacheExpiryMilliseconds = config.cacheExpiry * 1000
+        if (Date.now() - timestamp > cacheExpiryMilliseconds) {
+            localStorage.removeItem(cacheKey);
+            return null;
+        }
         return instances;
     } catch (error) {
         console.error('Cache read error:', error);
@@ -48,24 +52,19 @@ function getCachedInstances(config: ServiceConfig): Instance[] | null {
     }
 }
 
-function cacheWorkingInstance(config: ServiceConfig, instance: Instance): void {
+function cacheWorkingInstance(config: ServiceConfig, instance: Instance) {
     try {
-        const existingCache = getCachedInstances(config) || [];
-        const newCache = [
-            instance,
-            ...existingCache.filter(i => i.url !== instance.url)
-        ].slice(0, 5); // Keep only the 5 most recent working instances
-
-        localStorage.setItem(config.cacheKey, JSON.stringify({
-            instances: newCache,
+        const cacheKey = cacheKeyForService(config);
+        const newCache: InstanceCache = {
+            instance: instance,
             timestamp: Date.now()
-        }));
+        }
+        localStorage.setItem(cacheKey, JSON.stringify(newCache));
     } catch (error) {
         console.error('Cache write error:', error);
     }
 }
 
-// Check if an instance is available
 function checkInstanceAvailability(instance: Instance, timeout: number): Promise<boolean> {
     return new Promise((resolve) => {
         const img = new Image();
@@ -88,33 +87,30 @@ function checkInstanceAvailability(instance: Instance, timeout: number): Promise
     });
 }
 
-// Find a working instance
-async function findWorkingInstance(config: ServiceConfig, allInstances: Instance[]): Promise<Instance | null> {
-    const cachedInstances = getCachedInstances(config);
-    if (cachedInstances?.length) {
-        for (const instance of cachedInstances) {
-            if (await checkInstanceAvailability(instance, config.statusTimeout)) {
-                return instance;
-            }
+export async function findWorkingInstance(config: ServiceConfig, allInstances: Instance[]): Promise<Instance | null> {
+    const cached = cachedInstance(config);
+    let remainingInstances: Instance[];
+    if (cached) {
+        if (await checkInstanceAvailability(cached, config.statusTimeout)) {
+            return cached;
         }
+        localStorage.removeItem(cacheKeyForService(config));
+        remainingInstances = allInstances.filter(instance =>
+            instance.url !== cached.url
+        );
+    } else {
+        remainingInstances = allInstances;
     }
-
-    const remainingInstances = allInstances.filter(instance =>
-        !cachedInstances?.some(cached => cached.url === instance.url)
-    );
-
     for (const instance of remainingInstances) {
         if (await checkInstanceAvailability(instance, config.statusTimeout)) {
             cacheWorkingInstance(config, instance);
             return instance;
         }
     }
-
     return null;
 }
 
-// Update the status message
-function updateStatus(type: Status, message: string): void {
+export function updateStatus(type: Status, message: string) {
     const statusEl = document.getElementById('status');
     const statusTextEl = document.getElementById('status-text');
     if (statusEl && statusTextEl) {
@@ -123,23 +119,27 @@ function updateStatus(type: Status, message: string): void {
     }
 }
 
-
-function makeDestinationUrl({ instanceBaseUrl, sourceUrl, serviceName }: { instanceBaseUrl: string, sourceUrl: string, serviceName: ServiceName }): string | null {
-    const encodedSourceUrl = encodeURIComponent(sourceUrl)
+export function makeDestinationUrl({ instanceBaseUrl, sourceUrl, serviceName }: { instanceBaseUrl: string, sourceUrl: string, serviceName: ServiceName }): string | null {
     const components = new URL(sourceUrl)
-    const throwInvalidUrlError = () => { throw new Error('Not a valid URL') }
+    const invalidUrlError = () => new Error('Not a valid URL')
     switch (serviceName) {
         case 'redlib': {
             if (!components.hostname.includes('reddit.com')) {
-                throwInvalidUrlError()
+                throw invalidUrlError()
             }
-            return instanceBaseUrl + components.pathname + components.search + components.hash
+            const url = new URL(components.pathname, instanceBaseUrl);
+            url.search = components.search;
+            url.hash = components.hash;
+            return url.toString();
         }
         case 'invidious': {
             if (!components.hostname.includes('youtube.com')) {
-                throwInvalidUrlError()
+                throw invalidUrlError()
             }
-            return instanceBaseUrl + components.pathname + components.search + components.hash
+            const url = new URL(components.pathname, instanceBaseUrl);
+            url.search = components.search;
+            url.hash = components.hash;
+            return url.toString();
         }
         default:
             return null;
@@ -162,13 +162,21 @@ export function makeInstances({ rawInstances, serviceName }: { rawInstances: any
     }
 }
 
-// Initialization function
-export async function init(config: ServiceConfig): Promise<void> {
+export async function startSearching(customConfig: ServiceConfig): Promise<void> {
+    const config = serviceConfig(customConfig);
     const urlParams = new URLSearchParams(window.location.search);
     const targetUrl = urlParams.get('url');
     if (!targetUrl) {
         updateStatus('error', 'No URL parameter provided. See usage instructions above.');
         return;
+    }
+    const cacheExpiry = urlParams.get('cache_expiry');
+    if (cacheExpiry) {
+        config.cacheExpiry = parseInt(cacheExpiry);
+    }
+    const auto_redirect = urlParams.get('auto_redirect');
+    if (auto_redirect) {
+        config.autoRedirect = ['false', 'no', '0'].includes(auto_redirect);
     }
     try {
         updateStatus('loading', 'Checking for available instances...');
@@ -185,9 +193,9 @@ export async function init(config: ServiceConfig): Promise<void> {
             throw new Error('Invalid target URL.');
         }
         updateStatus('success', `Redirecting to ${redirectUrl}...`);
-        setTimeout(() => {
+        if (config.autoRedirect) {
             window.location.replace(redirectUrl);
-        }, 1000);
+        }
     } catch (error) {
         if (error instanceof Error) {
             updateStatus('error', error.message);
@@ -196,14 +204,3 @@ export async function init(config: ServiceConfig): Promise<void> {
         }
     }
 }
-
-// // Exported functions for use
-// export {
-//     createServiceConfig,
-//     getCachedInstances,
-//     cacheWorkingInstance,
-//     checkInstanceAvailability,
-//     findWorkingInstance,
-//     updateStatus,
-//     init
-// };
