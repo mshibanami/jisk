@@ -77,7 +77,10 @@ title: jisk
       .map(country => country.trim())
       .filter(country => country.length > 0);
     const cacheExpiry = document.getElementById('cache-expiry').value;
-    const baseUrl = window.location.origin;
+    let baseUrl = "{{ baseUrl }}";
+    if (baseUrl === '') {
+      baseUrl = window.location.origin;
+    }
     const redirectUrl = makeRedirectionUrl({ baseUrl, serviceName, sourceUrl, encodesSourceUrl, countries, cacheExpiry });
 
     const resultDiv = document.getElementById('result');

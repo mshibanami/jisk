@@ -13,9 +13,9 @@
   },
   "scripts": {
     "tsc-watch": "npx tsc --watch",
-    "serve-eleventy": "npx eleventy --serve",
+    "serve-eleventy": "ELEVENTY_ENV=development npx eleventy --serve",
     "dev": "npx npm-run-all -p tsc-watch serve-eleventy",
-    "build": "./scripts/download_instances.sh && npx tsc && npx eleventy",
+    "build": "./scripts/download_instances.sh && npx tsc && ELEVENTY_ENV=production npx eleventy",
     "test": "npx tsc && npx playwright test",
     "vscode-debug": "npx tsc && npx playwright test --config ./playwright.config.ts --workers=1"
   },

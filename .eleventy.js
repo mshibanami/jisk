@@ -2,6 +2,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addWatchTarget("src/");
   eleventyConfig.configureErrorReporting({ allowMissingExtensions: true });
+  if (process.env.ELEVENTY_ENV === "production") {
+    eleventyConfig.addGlobalData("baseUrl", "https://mshibanami.github.io/jisk/");
+  }
 
   // FIXME: According to the following documentation, this should work, but it doesn't:
   // https://www.11ty.dev/docs/permalinks/#remove-trailing-slashes

@@ -1,7 +1,8 @@
 import { ServiceName } from "./instances";
 
 export function makeRedirectionUrl({ baseUrl, sourceUrl, encodesSourceUrl, cacheExpiry, serviceName, countries }: { baseUrl: string, sourceUrl: string, encodesSourceUrl: boolean, cacheExpiry: number, serviceName: ServiceName, countries: string[] }): string | null {
-    const components = new URL(`/${serviceName}`, baseUrl)
+    const components = new URL(serviceName, baseUrl)
+
     if (encodesSourceUrl) {
         components.searchParams.set('url', sourceUrl)
     } else {
