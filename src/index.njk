@@ -4,11 +4,92 @@ title: jisk
 ---
 
 {% block content %}
-    <p>Hello World!</p>
+<section class="intro">
+  <p>
+    This is a web tool that helps you jump from a specific web
+    service to an alternative front end, such as Redlib, Invidious, and others. The tool automatically selects one
+    of the available instances for the service you’re redirecting to, which is particularly useful when combined
+    with browser extensions for automatic redirects.
+  </p>
+</section>
 
-    <h2>test cases</h2>
-    <ul>
-        <li><a href="/invidious?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DykG90lE2fGA">invidious</a></li>
-        <li><a href="/redlib?url=https%3A%2F%2Fnew.reddit.com%2Fr%2Fjavascript%2Fcomments%2Fo4tjz6%2Faskjs_what_is_better_than_webpack%2F">redlib</a></li>
-    </ul>
+<section class="info">
+  <h3>Redirection URL Maker</h3>
+  <p>Fill out the form below to generate a redirection URL:</p>
+  <div class="form-group">
+    <label for="service">Select a service:</label>
+    <select id="service" name="service">
+      <option value="redlib">Redlib</option>
+      <option value="invidious">Invidious</option>
+      <!-- Add other services here -->
+    </select>
+    <small>Select the alternative service you want to redirect to.</small>
+  </div>
+
+  <div class="form-group">
+    <label for="url">Enter the URL to redirect:</label>
+    <input type="text" id="url" name="url" placeholder="https://example.com" required>
+    <div class="form-check">
+      <input type="checkbox" id="encodesUrl" name="encodesUrl" checked>
+      <label for="encodesUrl">URL encode this address</label>
+    </div>
+    <small>Enter the original URL you want to redirect from.</small>
+  </div>
+
+  <div class="form-group">
+    <label for="countries">Country codes of instances (comma-separated, optional):</label>
+    <input type="text" id="countries" name="countries" placeholder="JP, TW, CN">
+    <small>Enter the country codes of preferred instances (e.g., JP for Japan, TW for Taiwan).</small>
+  </div>
+
+  <div class="form-group">
+    <label for="cache-expiry">Cache expiry (seconds, optional):</label>
+    <input type="number" id="cache-expiry" name="cache-expiry" placeholder="86400">
+    <small>Enter the cache expiry time in seconds (e.g., 86400 for 24 hours).</small>
+  </div>
+
+  <div id="result" class="example"></div>
+</section>
+
+<section class="info example">
+  <h3>Examples</h3>
+  <ul>
+    <li><a class="video-link" href="/invidious?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DykG90lE2fGA"></a>
+    </li>
+    <li><a class="video-link" href="/redlib?url=https%3A%2F%2Fnew.reddit.com%2Fr%2Fjavascript%2Fcomments%2Fo4tjz6"></a>
+    </li>
+  </ul>
+</section>
+
+<script type="module">
+  import { makeRedirectionUrl } from '/assets/js/makeRedirectionUrl.js';
+
+  document.querySelectorAll('.video-link').forEach(link => {
+    link.textContent = link.href;
+  });
+
+  function updateRedirectUrl() {
+    const serviceName = document.getElementById('service').value;
+    const sourceUrl = decodeURIComponent(document.getElementById('url').value);
+    const encodesSourceUrl = document.getElementById('encodesUrl').checked;
+    const countries = document.getElementById('countries').value
+      .split(',')
+      .map(country => country.trim())
+      .filter(country => country.length > 0);
+    const cacheExpiry = document.getElementById('cache-expiry').value;
+    const baseUrl = window.location.origin;
+    const redirectUrl = makeRedirectionUrl({ baseUrl, serviceName, sourceUrl, encodesSourceUrl, countries, cacheExpiry });
+
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = `<p>Generated Redirect URL:</p><a href="${redirectUrl}" target="_blank">${redirectUrl}</a>`;
+  }
+
+  document.getElementById('service').addEventListener('change', updateRedirectUrl);
+  document.getElementById('url').addEventListener('input', updateRedirectUrl);
+  document.getElementById('encodesUrl').addEventListener('change', updateRedirectUrl);
+  document.getElementById('countries').addEventListener('input', updateRedirectUrl);
+  document.getElementById('cache-expiry').addEventListener('input', updateRedirectUrl);
+
+  updateRedirectUrl();
+</script>
 {% endblock %}

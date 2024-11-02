@@ -8,7 +8,8 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -18,22 +19,16 @@ body {
 }
 
 /* Layout */
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
 header h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
   color: #007acc;
 }
 
 main {
   margin-top: 2rem;
   background-color: #fff;
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -42,17 +37,25 @@ main {
 #status {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
   margin: 20px 0;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  max-width: 100%;
 }
 
 #status-text {
   overflow-wrap: break-word;
   word-break: break-word;
-  flex: 1;
+  font-size: 1.25rem;
 }
 
 .loading {
@@ -72,14 +75,13 @@ main {
 
 /* Spinner for Loading State */
 #spinner {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border: 3px solid #f3f3f3;
   border-top: 3px solid #3498db;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-right: 10px;
-  flex-shrink: 0;
 }
 
 .hidden {
@@ -95,6 +97,12 @@ main {
   }
 }
 
+.intro p {
+  margin-top: 1rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
 /* Information Section */
 .info {
   background-color: #e9ecef;
@@ -104,60 +112,46 @@ main {
   text-align: left;
 }
 
-.info h2 {
-  margin-top: 0;
-  color: #495057;
+.info h2,
+.info h3,
+.info h4 {
+  color: #333;
 }
 
-.info ul {
-  padding-left: 20px;
+.info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.info h4 {
+  font-size: 1.25rem;
   margin-top: 1rem;
 }
 
-.info li {
-  margin: 8px 0;
+.info p,
+.info ul {
+  margin-top: 0.5rem;
   line-height: 1.6;
 }
 
-/* Example Box */
-.example {
-  background-color: #f8f9fa;
-  padding: 10px;
-  border-radius: 4px;
-  font-family: monospace;
-  word-break: break-all;
-  margin-top: 1rem;
-}
-
-/* Footer */
-.footer {
-  margin-top: 40px;
-  font-size: 0.9em;
-  color: #6c757d;
-}
-
-.footer a {
-  color: #007acc;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  text-decoration: underline;
+.info ul {
+  padding-left: 1.25rem;
+  list-style-type: disc;
 }
 
 /* Form Styling */
 form {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   text-align: left;
 }
 
 label {
   display: block;
-  margin: 0.5rem 0;
+  margin: 0.75rem 0 0.25rem;
   font-weight: bold;
 }
 
-input[type="url"],
+input[type="text"],
 input[type="number"],
 select {
   width: 100%;
@@ -192,10 +186,86 @@ button:hover {
   margin-top: 10px;
 }
 
+/* Generated Redirect URL Styling */
+#result {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #e8f4fc;
+  border: 2px solid #007acc;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 122, 204, 0.2);
+}
+
+#result p {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+#result a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #007acc;
+  text-decoration: none;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+#result a:hover {
+  text-decoration: underline;
+  color: #005a99;
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group small {
+  display: block;
+  color: #6c757d;
+  font-size: 0.9em;
+  margin-top: 0.25rem;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+}
+
+.form-group .form-check label {
+  margin-left: 0.5rem;
+  font-weight: normal;
+}
+
+/* Footer */
+.footer {
+  margin-top: 40px;
+  font-size: 0.9em;
+  color: #6c757d;
+}
+
+.footer a {
+  color: #007acc;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
 /* Responsive Design */
 @media (max-width: 600px) {
   header h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   main {

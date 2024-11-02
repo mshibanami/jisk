@@ -1,7 +1,12 @@
 type Instance = {
     url: string;
-    region?: string; // ISO 3166-1 alpha-2 code (e.g. JP, TW, KO, CN)
-    uptime?: number; // Uptime percentage (0-100)
+
+    // e.g. JP, TW, KO, CN
+    countryCode?: string;
+
+    // Uptime percentage (0-100)
+    uptime?: number;
+
     faviconUrl?: string;
 };
 
@@ -180,17 +185,17 @@ export function makeInstances({ rawInstances, serviceName }: { rawInstances: any
     switch (serviceName) {
         case 'redlib':
             return (rawInstances.instances as any[])
-                .map((instance: any) => {
+                .map(instance => {
                     return {
                         url: instance.url,
-                        region: instance.country
+                        countryCode: instance.country
                     }
                 })
         case 'invidious':
             return (rawInstances as any[][]).map(([_, info]) => {
                 return {
                     url: info.uri,
-                    region: info.region,
+                    countryCode: info.countryCode,
                     faviconUrl: info.favicon_url
                 }
             })

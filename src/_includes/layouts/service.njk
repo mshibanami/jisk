@@ -3,26 +3,26 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-  <section id="status" role="status" aria-live="polite">
-      <div id="spinner" class="hidden"></div>
-      <span id="status-text"></span>
-  </section>
+<section id="status" role="status" aria-live="polite">
+  <div id="spinner" class="hidden"></div>
+  <span id="status-text"></span>
+</section>
 
-  <div id="cache-status"></div>
-  
-  <script type="module">
-    import { startSearching, makeInstances } from '/assets/js/instances.js';
+<div id="cache-status"></div>
 
-    const serviceName = '{{ serviceName }}'
-    const rawInstances = {{ generated[serviceName].instances | dump | safe }}
-    const instances = makeInstances({ rawInstances, serviceName });
-    const config = {
-      instances: instances,
-      serviceName: serviceName,
-      cacheKey: '{{ cacheKey | default('undefined') }}',
-      cacheExpiry: {{ cacheExpiry | default('undefined') }},
-      statusTimeout: {{ statusTimeout | default('undefined') }},
-    };
-    startSearching(config);
-  </script>
+<script type="module">
+  import { startSearching, makeInstances } from '/assets/js/instances.js';
+
+  const serviceName = '{{ serviceName }}'
+  const rawInstances = {{ generated[serviceName].instances | dump | safe }}
+  const instances = makeInstances({ rawInstances, serviceName });
+  const config = {
+    instances: instances,
+    serviceName: serviceName,
+    cacheKey: '{{ cacheKey | default('undefined') }}',
+    cacheExpiry: {{ cacheExpiry | default('undefined') }},
+    statusTimeout: {{ statusTimeout | default('undefined') }},
+  };
+  startSearching(config);
+</script>
 {% endblock %}
