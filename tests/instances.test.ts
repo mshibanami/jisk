@@ -66,7 +66,7 @@ test.describe('Test for instances.ts', () => {
 test.describe('Redlib', () => {
     test('should redirect to an instance', async ({ page }) => {
         await page.goto(
-            'http://localhost:8080/redlib/?url=https://www.reddit.com/r/privacy',
+            'http://localhost:8080/redlib?url=https://www.reddit.com/r/privacy',
             { waitUntil: 'domcontentloaded' });
         await page.waitForTimeout(40000);
         // Should not include the domain of the local server
