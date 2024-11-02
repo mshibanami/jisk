@@ -1,6 +1,6 @@
-# sk
+# jisk
 
-<https://mshibanami.github.io/sk>
+<https://mshibanami.github.io/jisk>
 
 This is a web tool that helps you jump from a specific web service to an alternative front end, such as Redlib, Invidious, and so on. Those alternative web services are served by multiple instances, and this tool automatically selects one of the available ones.
 
@@ -19,15 +19,15 @@ Let's say you want to redirect from Reddit to Redlib.
 
 Firstly, open the following URL and follow the instructions displayed:
 
-<https://mshibanami.github.io/sk>
+<https://mshibanami.github.io/jisk>
 
 Then you'll get the redirection URL like this:
 
 ```url
-https://mshibanami.github.io/sk/redlib?url=...
+https://mshibanami.github.io/jisk/redlib?url=...
 ```
 
-And then, using your your browser extension, set up a redirect rule that redirects from the original Reddit URL to `mshibanami.github.io/sk/redlib?url=...`.
+And then, using your your browser extension, set up a redirect rule that redirects from the original Reddit URL to `mshibanami.github.io/jisk/redlib?url=...`.
 
 ## How does it work?
 
