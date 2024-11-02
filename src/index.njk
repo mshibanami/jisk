@@ -54,15 +54,20 @@ title: jisk
 <section class="info example">
   <h3>Examples</h3>
   <ul>
-    <li><a class="video-link" href="/invidious?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DykG90lE2fGA"></a>
+    <li><a class="video-link" href="invidious?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DykG90lE2fGA"></a>
     </li>
-    <li><a class="video-link" href="/redlib?url=https%3A%2F%2Fnew.reddit.com%2Fr%2Fjavascript%2Fcomments%2Fo4tjz6"></a>
+    <li><a class="video-link" href="redlib?url=https%3A%2F%2Fnew.reddit.com%2Fr%2Fjavascript%2Fcomments%2Fo4tjz6"></a>
     </li>
   </ul>
 </section>
 
 <script type="module">
   import { makeRedirectionUrl } from './assets/js/makeRedirectionUrl.js';
+
+  let baseUrl = "{{ baseUrl }}";
+  if (baseUrl === '') {
+    baseUrl = window.location.origin;
+  }
 
   document.querySelectorAll('.video-link').forEach(link => {
     link.textContent = link.href;
@@ -77,10 +82,6 @@ title: jisk
       .map(country => country.trim())
       .filter(country => country.length > 0);
     const cacheExpiry = document.getElementById('cache-expiry').value;
-    let baseUrl = "{{ baseUrl }}";
-    if (baseUrl === '') {
-      baseUrl = window.location.origin;
-    }
     const redirectUrl = makeRedirectionUrl({ baseUrl, serviceName, sourceUrl, encodesSourceUrl, countries, cacheExpiry });
 
     const resultDiv = document.getElementById('result');
