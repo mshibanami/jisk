@@ -41,12 +41,15 @@ export interface ServiceConfig {
 }
 
 export function serviceConfig(overrides: Partial<ServiceConfig>): ServiceConfig {
-    return {
+    const defaults: Partial<ServiceConfig> = {
         cacheExpiry: 24 * 60 * 60, // 24 hours
         statusTimeout: 3, // 3 seconds
         autoRedirect: true,
-        ...overrides,
-    } as ServiceConfig;
+    };
+    const filteredOverrides = Object.fromEntries(
+        Object.entries(overrides).filter(([_, value]) => value !== undefined)
+    );
+    return Object.assign({}, defaults, filteredOverrides) as ServiceConfig;
 }
 
 function cacheKeyForService(config: ServiceConfig) {
