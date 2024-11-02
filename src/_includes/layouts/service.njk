@@ -11,7 +11,7 @@
 <div id="cache-status"></div>
 
 <script type="module">
-  import { startSearching, makeInstances } from '/assets/js/instances.js';
+  import { startSearching, makeInstances } from './assets/js/instances.js';
 
   const serviceName = '{{ serviceName }}'
   const rawInstances = {{ generated[serviceName].instances | dump | safe }}
