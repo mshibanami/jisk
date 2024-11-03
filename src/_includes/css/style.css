@@ -7,6 +7,12 @@
   padding: 0;
 }
 
+/* Preventing text zoom when tapping on a text field on mobile devices. */
+:root {
+  touch-action: pan-x pan-y;
+  height: 100%;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
