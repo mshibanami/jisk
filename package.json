@@ -7,6 +7,7 @@
     "@playwright/test": "1.48.2",
     "@types/node": "^22.8.6",
     "expect-playwright": "^0.8.0",
+    "minify": "^11.4.1",
     "npm-run-all": "^4.1.5",
     "playwright": "^1.48.2",
     "typescript": "^5.6.3"
@@ -15,7 +16,7 @@
     "tsc-watch": "npx tsc --watch",
     "serve-eleventy": "ELEVENTY_ENV=development npx eleventy --serve",
     "dev": "npx npm-run-all -p tsc-watch serve-eleventy",
-    "build": "./scripts/download_instances.sh && npx tsc && ELEVENTY_ENV=production npx eleventy",
+    "build": "./build.sh",
     "test": "npx tsc && npx playwright test",
     "vscode-debug": "npx tsc && npx playwright test --config ./playwright.config.ts --workers=1"
   },
