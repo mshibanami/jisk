@@ -1,5 +1,5 @@
 import { test, expect, test as setup } from '@playwright/test';
-import { makeDestinationUrl, ServiceConfig, serviceConfig, ServiceName } from '../src/assets/ts/instances';
+import { filterSelectableInstances, findWorkingInstance, Instance, makeDestinationUrl, ServiceConfig, serviceConfig, ServiceName } from '../src/assets/ts/instances';
 
 type DestinationURLTestCase = {
   instanceBaseUrl: string;
@@ -51,6 +51,43 @@ test.describe('Test for instances.ts', () => {
       } catch (error) {
         expect(error).toEqual(expected);
       }
+    }
+  })
+
+  test('should filter by country codes with findWorkingInstance()', async ({ page }) => {
+    const instances: Instance[] = [
+      {
+        url: 'https://example.com/',
+        countryCode: 'JP',
+        uptime: 100,
+      },
+      {
+        url: 'https://example.com/',
+        countryCode: 'TW',
+      },
+    ];
+
+    {
+      var config = serviceConfig(mockServiceConfig);
+      config.countryCodes = ['JP'];
+      const filtered = await filterSelectableInstances(config, instances);
+      if (!filtered) {
+        throw new Error('No instances found');
+      }
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].countryCode).toBe('JP');
+    }
+
+    {
+      var config = serviceConfig(mockServiceConfig);
+      config.countryCodes = [];
+      const filtered = await filterSelectableInstances(config, instances);
+      if (!filtered) {
+        throw new Error('No instances found');
+      }
+      expect(filtered.length).toBe(2);
+      expect(filtered[0].countryCode).toBe('JP');
+      expect(filtered[1].countryCode).toBe('TW');
     }
   })
 })

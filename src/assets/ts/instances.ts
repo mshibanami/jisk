@@ -1,4 +1,4 @@
-type Instance = {
+export type Instance = {
     url: string;
 
     // e.g. JP, TW, KO, CN
@@ -27,7 +27,6 @@ const ui = new Proxy(_ui, {
         return true;
     }
 });
-
 export type ServiceName = 'redlib' | 'invidious';
 export type Status = 'idle' | 'loading' | 'success' | 'error';
 
@@ -38,6 +37,14 @@ export interface ServiceConfig {
     cacheExpiry: number;
     statusTimeout: number;
     autoRedirect: boolean;
+    countryCodes?: string[];
+}
+
+function shuffled<T>(array: T[]): T[] {
+    return array
+        .map(value => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
 }
 
 export function serviceConfig(overrides: Partial<ServiceConfig>): ServiceConfig {
@@ -89,6 +96,15 @@ function cacheWorkingInstance(config: ServiceConfig, instance: Instance) {
     }
 }
 
+function removeCachedInstance(config: ServiceConfig) {
+    try {
+        const cacheKey = cacheKeyForService(config);
+        localStorage.removeItem(cacheKey);
+    } catch (error) {
+        console.warn('Cache removal error:', error);
+    }
+}
+
 function checkInstanceAvailability(instance: Instance, timeout: number): Promise<boolean> {
     return new Promise((resolve) => {
         const img = new Image();
@@ -112,27 +128,43 @@ function checkInstanceAvailability(instance: Instance, timeout: number): Promise
 }
 
 export async function findWorkingInstance(config: ServiceConfig, allInstances: Instance[]): Promise<Instance | null> {
-    const cached = cachedInstance(config);
+    const shuffledInstances = shuffled(allInstances);
     let remainingInstances: Instance[];
+    const cached = cachedInstance(config);
     if (cached) {
-        if (await checkInstanceAvailability(cached, config.statusTimeout)) {
-            return cached;
-        }
-        localStorage.removeItem(cacheKeyForService(config));
-        remainingInstances = allInstances.filter(instance =>
-            instance.url !== cached.url
-        );
+        // Prioritize the cached instance
+        remainingInstances = [cached].concat(
+            shuffledInstances.filter(instance => instance.url !== cached.url));
     } else {
-        remainingInstances = allInstances;
+        remainingInstances = shuffledInstances;
     }
-    for (const instance of remainingInstances) {
+    const filteredInstances = await filterSelectableInstances(config, remainingInstances);
+    for (const instance of filteredInstances) {
         if (await checkInstanceAvailability(instance, config.statusTimeout)) {
             cacheWorkingInstance(config, instance);
             return instance;
         }
     }
+    removeCachedInstance(config);
     return null;
 }
+
+export async function filterSelectableInstances(config: ServiceConfig, instances: Instance[]): Promise<Instance[]> {
+    const filteredInstances = instances.filter(instance =>
+        isSelectableInstance(instance, config)
+    );
+    return filteredInstances;
+}
+
+function isSelectableInstance(instance: Instance, config: ServiceConfig): boolean {
+    if (config.countryCodes && config.countryCodes.length > 0) {
+        return instance.countryCode
+            ? config.countryCodes.includes(instance.countryCode)
+            : false
+    }
+    return true;
+}
+
 
 export function setStatus(type: Status, message: string) {
     ui.type = type;
