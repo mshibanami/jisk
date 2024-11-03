@@ -1,5 +1,7 @@
 # jisk
 
+[![Deploy](https://github.com/mshibanami/jisk/actions/workflows/deploy.yml/badge.svg)](https://github.com/mshibanami/jisk/actions/workflows/deploy.yml) [![Tests](https://github.com/mshibanami/jisk/actions/workflows/tests.yaml/badge.svg)](https://github.com/mshibanami/jisk/actions/workflows/tests.yaml)
+
 <https://mshibanami.github.io/jisk>
 
 This is a web tool that helps you jump from a specific web service to an alternative front end, such as Redlib, Invidious, and so on. Those alternative web services are served by multiple instances, and this tool automatically selects one of the available ones.
