@@ -266,7 +266,7 @@ export async function startSearching(customConfig: ServiceConfig): Promise<void>
     }
     const auto_redirect = urlParams.get('auto_redirect');
     if (auto_redirect !== null) {
-        config.autoRedirect = ['false', 'no', '0'].includes(auto_redirect);
+        config.autoRedirect = !['false', 'no', '0'].includes(auto_redirect);
     }
     try {
         setStatus('loading', 'Checking for available instances...');
