@@ -28,7 +28,7 @@ title: jisk
 
   <div class="form-group">
     <label for="url">Source URL</label>
-    <input type="text" id="url" name="url" placeholder="https://example.com" required>
+    <input type="text" id="url" name="url" required>
     <div class="form-check">
       <input type="checkbox" id="encodesUrl" name="encodesUrl" checked>
       <label for="encodesUrl">Apply URL encoding</label>
@@ -64,6 +64,8 @@ title: jisk
 <script type="module">
   import { makeRedirectionUrl } from './assets/js/makeRedirectionUrl.js';
 
+  const services = {{ services.services | dump | safe }}
+
   let baseUrl = "{{ baseUrl }}";
   if (baseUrl === '') {
     baseUrl = window.location.origin;
@@ -73,27 +75,30 @@ title: jisk
     link.textContent = link.href;
   });
 
-  function updateRedirectUrl() {
+  function updateUI() {
     const serviceName = document.getElementById('service').value;
-    const sourceUrl = decodeURIComponent(document.getElementById('url').value);
+    const urlEl = document.getElementById('url')
+    const sourceUrl = urlEl.value;
     const encodesSourceUrl = document.getElementById('encodesUrl').checked;
     const countries = document.getElementById('countries').value
       .split(',')
       .map(country => country.trim())
       .filter(country => country.length > 0);
     const cacheExpiry = document.getElementById('cache-expiry').value;
-    const redirectUrl = makeRedirectionUrl({ baseUrl, serviceName, sourceUrl, encodesSourceUrl, countries, cacheExpiry });
 
+    urlEl.placeholder = services.find(service => service.id === serviceName).urlPlaceholder;
+
+    const redirectUrl = makeRedirectionUrl({ baseUrl, serviceName, sourceUrl, encodesSourceUrl, countries, cacheExpiry });
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = `<p>Generated Redirect URL:</p><a href="${redirectUrl}" target="_blank">${redirectUrl}</a>`;
   }
 
-  document.getElementById('service').addEventListener('change', updateRedirectUrl);
-  document.getElementById('url').addEventListener('input', updateRedirectUrl);
-  document.getElementById('encodesUrl').addEventListener('change', updateRedirectUrl);
-  document.getElementById('countries').addEventListener('input', updateRedirectUrl);
-  document.getElementById('cache-expiry').addEventListener('input', updateRedirectUrl);
+  document.getElementById('service').addEventListener('change', updateUI);
+  document.getElementById('url').addEventListener('input', updateUI);
+  document.getElementById('encodesUrl').addEventListener('change', updateUI);
+  document.getElementById('countries').addEventListener('input', updateUI);
+  document.getElementById('cache-expiry').addEventListener('input', updateUI);
 
-  updateRedirectUrl();
+  updateUI();
 </script>
 {% endblock %}
