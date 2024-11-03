@@ -18,7 +18,7 @@
     "dev": "npx npm-run-all -p tsc-watch serve-eleventy",
     "build": "./scripts/build.sh",
     "test": "npx tsc && npx playwright test",
-    "vscode-debug": "npx tsc && npx playwright test --config ./playwright.config.ts --workers=1"
+    "vscode-debug": "npx tsc && npx playwright test"
   },
   "keywords": [],
   "author": "",

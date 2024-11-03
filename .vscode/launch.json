@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Playwright Tests",
+            "name": "Playwright Tests",
             "type": "node",
             "request": "launch",
             "runtimeExecutable": "npm",

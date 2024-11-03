@@ -1,5 +1,4 @@
 import { test, expect, test as setup } from '@playwright/test';
-import { ChildProcess, spawn } from 'child_process';
 import { makeDestinationUrl, ServiceConfig, serviceConfig, ServiceName } from '../src/assets/ts/instances';
 
 type DestinationURLTestCase = {
@@ -9,20 +8,13 @@ type DestinationURLTestCase = {
   expected: string | Error;
 };
 
-let eleventyProcess: ChildProcess | null = null;
-let tscWatchProcess: ChildProcess | null = null;
-
 // Define mockServiceConfig within the test file
 const mockServiceConfig: Partial<ServiceConfig> = {
+  autoRedirect: true,
   customCacheKey: 'service_cache',
   cacheExpiry: 86400, // 24 hours in seconds
   statusTimeout: 3,
 };
-
-setup('Start 11ty server', async () => {
-  eleventyProcess = spawn('npm', ['run', 'serve-eleventy'], { stdio: 'inherit' });
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-});
 
 test.describe('Test for instances.ts', () => {
   test('should return a valid service config', () => {
@@ -44,7 +36,7 @@ test.describe('Test for instances.ts', () => {
         instanceBaseUrl,
         sourceUrl: 'https://www.reddit.com/r/privacy/',
         serviceName: 'invidious',
-        expected: Error('Not a valid URL'),
+        expected: Error('https://www.reddit.com/r/privacy/ is not a valid URL for invidious.'),
       },
     ]
 
