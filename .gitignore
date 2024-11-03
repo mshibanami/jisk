@@ -136,4 +136,5 @@ dist
 
 src/_data/generated
 src/assets/js/**/*.js
-playwright-report
+playwright-report/
+test-results/
