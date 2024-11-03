@@ -127,19 +127,23 @@ function checkInstanceAvailability(instance: Instance, timeout: number): Promise
     });
 }
 
-export async function findWorkingInstance(config: ServiceConfig, allInstances: Instance[]): Promise<Instance | null> {
-    const shuffledInstances = shuffled(allInstances);
-    let remainingInstances: Instance[];
+export async function findWorkingInstance(config: ServiceConfig, instances: Instance[]): Promise<Instance | null> {
+    const shuffledInstances = shuffled(instances);
+    let targetInstances: Instance[];
     const cached = cachedInstance(config);
     if (cached) {
-        // Prioritize the cached instance
-        remainingInstances = [cached].concat(
-            shuffledInstances.filter(instance => instance.url !== cached.url));
+        if (!shuffledInstances.map(instance => instance.url).includes(cached.url)) {
+            removeCachedInstance(config);
+            targetInstances = shuffledInstances;
+        } else {
+            // Prioritize the cached instance
+            targetInstances = [cached].concat(
+                shuffledInstances.filter(instance => instance.url !== cached.url));
+        }
     } else {
-        remainingInstances = shuffledInstances;
+        targetInstances = shuffledInstances;
     }
-    const filteredInstances = await filterSelectableInstances(config, remainingInstances);
-    for (const instance of filteredInstances) {
+    for (const instance of targetInstances) {
         if (await checkInstanceAvailability(instance, config.statusTimeout)) {
             cacheWorkingInstance(config, instance);
             return instance;
@@ -260,7 +264,11 @@ export async function startSearching(customConfig: ServiceConfig): Promise<void>
     }
     try {
         setStatus('loading', 'Checking for available instances...');
-        const workingInstance = await findWorkingInstance(config, config.instances);
+        const selectableInstances = await filterSelectableInstances(config, config.instances);
+        if (selectableInstances.length === 0) {
+            throw new Error('No selectable instances found. The filter conditions may be too strict.');
+        }
+        const workingInstance = await findWorkingInstance(config, selectableInstances);
         if (!workingInstance) {
             throw new Error('No available instances found. Please try again later.');
         }
