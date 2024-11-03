@@ -55,6 +55,10 @@ You can also host this tool by forking this repository and use it as your own.
 
 This tool is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
 
+## Contributing
+
+See [the contributing guide](CONTRIBUTING.md) for detailed instructions on how to get started with our project.
+
 ## Acknowledgments
 
 I appreciate [@atutal](https://github.com/atutal) who gave me an inspiration to create this project [here](https://github.com/mshibanami/redirect-web/issues/61).
