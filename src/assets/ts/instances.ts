@@ -159,7 +159,7 @@ export function updateUI() {
 
 export function makeDestinationUrl({ instanceBaseUrl, sourceUrl, serviceName }: { instanceBaseUrl: string, sourceUrl: string, serviceName: ServiceName }): string | null {
     const components = new URL(sourceUrl)
-    const invalidUrlError = () => new Error('Not a valid URL')
+    const invalidUrlError = () => new Error(`${sourceUrl} is not a valid URL for ${serviceName}.`)
     switch (serviceName) {
         case 'redlib': {
             if (!components.hostname.includes('reddit.com')) {
@@ -210,9 +210,12 @@ export function makeInstances({ rawInstances, serviceName }: { rawInstances: any
 export async function startSearching(customConfig: ServiceConfig): Promise<void> {
     const config = serviceConfig(customConfig);
     const urlParams = new URLSearchParams(window.location.search);
-    const targetUrl = urlParams.get('url');
-    if (targetUrl === null) {
-        setStatus('error', 'No URL parameter provided. See usage instructions above.');
+    const sourceUrl = urlParams.get('url');
+    if (sourceUrl === null) {
+        setStatus('error', 'No "url" parameter provided.');
+        return;
+    } else if (sourceUrl.length === 0) {
+        setStatus('error', '"url" parameter is empty.');
         return;
     }
     const cacheExpiry = urlParams.get('cache_expiry');
@@ -231,7 +234,7 @@ export async function startSearching(customConfig: ServiceConfig): Promise<void>
         }
         const redirectUrl = makeDestinationUrl({
             instanceBaseUrl: workingInstance.url,
-            sourceUrl: targetUrl,
+            sourceUrl: sourceUrl,
             serviceName: config.serviceName
         });
         if (!redirectUrl) {

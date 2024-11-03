@@ -1,0 +1,12 @@
+{
+    "services": [
+        {
+            "id": "invidious",
+            "name": "Invidious"
+        },
+        {
+            "id": "redlib",
+            "name": "Redlib"
+        }
+    ]
+}
