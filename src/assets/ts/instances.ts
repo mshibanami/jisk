@@ -66,17 +66,17 @@ function cacheKeyForService(config: ServiceConfig) {
 function cachedInstance(config: ServiceConfig): Instance | null {
     const cacheKey = cacheKeyForService(config);
     try {
-        const cached = localStorage.getItem(cacheKey);
-        if (!cached) {
+        const cachedJsonString = localStorage.getItem(cacheKey);
+        if (!cachedJsonString) {
             return null;
         }
-        const { instances, timestamp } = JSON.parse(cached) satisfies InstanceCache;
+        const { instance, timestamp }: InstanceCache = JSON.parse(cachedJsonString);
         const cacheExpiryMilliseconds = config.cacheExpiry * 1000
         if (Date.now() - timestamp > cacheExpiryMilliseconds) {
             localStorage.removeItem(cacheKey);
             return null;
         }
-        return instances;
+        return instance;
     } catch (error) {
         console.error('Cache read error:', error);
         return null;
