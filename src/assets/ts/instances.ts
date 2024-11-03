@@ -27,7 +27,7 @@ const ui = new Proxy(_ui, {
         return true;
     }
 });
-export type ServiceName = 'redlib' | 'invidious';
+export type ServiceName = 'invidious' | 'redlib' | 'rimgo';
 export type Status = 'idle' | 'loading' | 'success' | 'error';
 
 export interface ServiceConfig {
@@ -193,43 +193,32 @@ export function updateUI() {
     }
 }
 
-export function makeDestinationUrl({ instanceBaseUrl, sourceUrl, serviceName }: { instanceBaseUrl: string, sourceUrl: string, serviceName: ServiceName }): string | null {
-    const components = new URL(sourceUrl)
-    const invalidUrlError = () => new Error(`${sourceUrl} is not a valid URL for ${serviceName}.`)
-    switch (serviceName) {
-        case 'redlib': {
-            if (!components.hostname.includes('reddit.com')) {
-                throw invalidUrlError()
-            }
-            const url = new URL(components.pathname, instanceBaseUrl);
-            url.search = components.search;
-            url.hash = components.hash;
-            return url.toString();
-        }
-        case 'invidious': {
-            if (!components.hostname.includes('youtube.com')) {
-                throw invalidUrlError()
-            }
-            const url = new URL(components.pathname, instanceBaseUrl);
-            url.search = components.search;
-            url.hash = components.hash;
-            return url.toString();
-        }
-        default:
-            return null;
+export function makeDestinationUrl({
+    instanceBaseUrl,
+    sourceUrl,
+    serviceName
+}: {
+    instanceBaseUrl: string;
+    sourceUrl: string;
+    serviceName: ServiceName;
+}): string | null {
+    const components = new URL(sourceUrl);
+    const serviceValidators: Record<ServiceName, (hostname: string) => boolean> = {
+        invidious: (hostname) => hostname.includes('youtube.com'),
+        redlib: (hostname) => hostname.includes('reddit.com'),
+        rimgo: (hostname) => hostname.includes('imgur.com')
+    };
+    if (!serviceValidators[serviceName]?.(components.hostname)) {
+        throw new Error(`${sourceUrl} is not a valid URL for ${serviceName}.`);
     }
+    const url = new URL(components.pathname, instanceBaseUrl);
+    url.search = components.search;
+    url.hash = components.hash;
+    return url.toString();
 }
 
 export function makeInstances({ rawInstances, serviceName }: { rawInstances: any, serviceName: ServiceName }): Instance[] {
     switch (serviceName) {
-        case 'redlib':
-            return (rawInstances.instances as any[])
-                .map(instance => {
-                    return {
-                        url: instance.url,
-                        countryCode: instance.country
-                    }
-                })
         case 'invidious':
             return (rawInstances as any[][]).map(([_, info]) => {
                 return {
@@ -238,6 +227,22 @@ export function makeInstances({ rawInstances, serviceName }: { rawInstances: any
                     faviconUrl: info.favicon_url
                 }
             })
+        case 'redlib':
+            return (rawInstances.instances as any[])
+                .map(instance => {
+                    return {
+                        url: instance.url,
+                        countryCode: instance.country
+                    }
+                })
+        case 'rimgo':
+            return (rawInstances as any[])
+                .map(instance => {
+                    return {
+                        url: instance.url,
+                        countryCode: instance.countries[0]
+                    }
+                })
         default:
             throw new Error('Invalid service name')
     }

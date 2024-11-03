@@ -5,8 +5,9 @@ set -ex
 cd "$(dirname "$0")/.."
 
 SERVICES=(
-    "redlib https://raw.githubusercontent.com/redlib-org/redlib-instances/refs/heads/main/instances.json"
     "invidious https://api.invidious.io/instances.json?pretty=1&sort_by=type,users"
+    "redlib https://raw.githubusercontent.com/redlib-org/redlib-instances/refs/heads/main/instances.json"
+    "rimgo https://codeberg.org/rimgo/rimgo/raw/branch/main/instances.json"
 )
 
 BASE_DIR="src/_data/generated"

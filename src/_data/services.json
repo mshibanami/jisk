@@ -9,6 +9,11 @@
             "id": "redlib",
             "name": "Redlib",
             "urlPlaceholder": "https://www.reddit.com/..."
+        },
+        {
+            "id": "rimgo",
+            "name": "rimgo",
+            "urlPlaceholder": "https://imgur.com/..."
         }
     ]
 }
