@@ -226,7 +226,7 @@ export function makeInstances({ rawInstances, serviceName }: { rawInstances: any
                 return {
                     url: info.uri,
                     countryCode: info.region,
-                    faviconUrl: info.favicon_url
+                    faviconUrl: info.monitor?.favicon_url
                 }
             })
         case 'redlib':
