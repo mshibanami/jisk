@@ -161,9 +161,10 @@ export async function filterSelectableInstances(config: ServiceConfig, instances
 }
 
 function isSelectableInstance(instance: Instance, config: ServiceConfig): boolean {
-    if (config.countryCodes && config.countryCodes.length > 0) {
+    const upperCasedCountryCodes = config.countryCodes?.map(code => code.toUpperCase()) ?? [];
+    if (upperCasedCountryCodes.length > 0) {
         return instance.countryCode
-            ? config.countryCodes.includes(instance.countryCode)
+            ? upperCasedCountryCodes.includes(instance.countryCode.toUpperCase())
             : false
     }
     return true;
