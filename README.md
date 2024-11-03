@@ -46,6 +46,7 @@ You can specify the following query parameters for the redirection URL for each 
 - `url`: The source URL you want to redirect to the alternative web service. This should be URL-encoded.
 - `cache_expiry`: The cache expiry time in seconds. The default is 86400 seconds (1 day). If you set it to `0`, the cache will not be used.
 - `auto_redirect`: If `false`, the page will not redirect automatically. It's also useful to debug the redirection. The default is `true`.
+- `countries`: A comma-separated list of country codes. If you specify this parameter, the redirection will be limited to the specified countries. The default is no limitation.
 
 ## Privacy Policy
 

@@ -224,7 +224,7 @@ export function makeInstances({ rawInstances, serviceName }: { rawInstances: any
             return (rawInstances as any[][]).map(([_, info]) => {
                 return {
                     url: info.uri,
-                    countryCode: info.countryCode,
+                    countryCode: info.region,
                     faviconUrl: info.favicon_url
                 }
             })
@@ -268,6 +268,11 @@ export async function startSearching(customConfig: ServiceConfig): Promise<void>
     if (auto_redirect !== null) {
         config.autoRedirect = !['false', 'no', '0'].includes(auto_redirect);
     }
+    const countryCodes = urlParams.get('countries');
+    if (countryCodes !== null) {
+        config.countryCodes = countryCodes.split(',').map(code => code.trim());
+    }
+
     try {
         setStatus('loading', 'Checking for available instances...');
         const selectableInstances = await filterSelectableInstances(config, config.instances);

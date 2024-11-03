@@ -1,5 +1,5 @@
 import { test, expect, test as setup } from '@playwright/test';
-import { filterSelectableInstances, findWorkingInstance, Instance, makeDestinationUrl, ServiceConfig, serviceConfig, ServiceName } from '../src/assets/ts/instances';
+import { filterSelectableInstances, findWorkingInstance, Instance, makeDestinationUrl, makeInstances, ServiceConfig, serviceConfig, ServiceName } from '../src/assets/ts/instances';
 
 type DestinationURLTestCase = {
   instanceBaseUrl: string;
@@ -22,7 +22,7 @@ test.describe('Test for instances.ts', () => {
     expect(config).toEqual(mockServiceConfig);
   });
 
-  test('can make a destination URL', () => {
+  test('should make a destination URL', () => {
     const instanceBaseUrl = 'https://example.com/';
 
     const testCases: DestinationURLTestCase[] = [
@@ -54,7 +54,35 @@ test.describe('Test for instances.ts', () => {
     }
   })
 
-  test('should filter by country codes with findWorkingInstance()', async ({ page }) => {
+  test('should parse instances.json', async () => {
+    {
+      const rawInstances = require('./resources/invidious/instances.json');
+      const parsedInstances = makeInstances({ rawInstances, serviceName: 'invidious' });
+      expect(parsedInstances.length).toBe(8);
+      const instance = parsedInstances[0]
+      expect(instance.url).toBeDefined();
+      expect(instance.countryCode).toBeDefined();
+      expect(instance.faviconUrl).toBeDefined();
+    }
+    {
+      const rawInstances = require('./resources/redlib/instances.json');
+      const parsedInstances = makeInstances({ rawInstances, serviceName: 'redlib' });
+      expect(parsedInstances.length).toBe(29);
+      const instance = parsedInstances[0]
+      expect(instance.url).toBeDefined();
+      expect(instance.countryCode).toBeDefined();
+    }
+    {
+      const rawInstances = require('./resources/rimgo/instances.json');
+      const parsedInstances = makeInstances({ rawInstances, serviceName: 'rimgo' });
+      expect(parsedInstances.length).toBe(21);
+      const instance = parsedInstances[0]
+      expect(instance.url).toBeDefined();
+      expect(instance.countryCode).toBeDefined();
+    }
+  })
+
+  test('should filter by country codes', async ({ page }) => {
     const instances: Instance[] = [
       {
         url: 'https://example.com/',
