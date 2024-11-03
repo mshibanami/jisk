@@ -195,6 +195,21 @@ export function updateUI() {
     }
 }
 
+function isValidSourceUrl({ sourceUrl, serviceName }: { sourceUrl: string, serviceName: ServiceName }): boolean {
+    const hostname = new URL(sourceUrl).hostname;
+    switch (serviceName) {
+        case 'invidious':
+            return hostname.endsWith('youtube.com');
+        case 'redlib':
+            return hostname.endsWith('reddit.com');
+        case 'rimgo':
+            return hostname.endsWith('imgur.com');
+        default:
+            console.error('Invalid service name: ', serviceName);
+            return false;
+    }
+}
+
 export function makeDestinationUrl({
     instanceBaseUrl,
     sourceUrl,
@@ -204,15 +219,10 @@ export function makeDestinationUrl({
     sourceUrl: string;
     serviceName: ServiceName;
 }): string | null {
-    const components = new URL(sourceUrl);
-    const serviceValidators: Record<ServiceName, (hostname: string) => boolean> = {
-        invidious: (hostname) => hostname.includes('youtube.com'),
-        redlib: (hostname) => hostname.includes('reddit.com'),
-        rimgo: (hostname) => hostname.includes('imgur.com')
-    };
-    if (!serviceValidators[serviceName]?.(components.hostname)) {
+    if (!isValidSourceUrl({ sourceUrl, serviceName })) {
         throw new Error(`${sourceUrl} is not a valid URL for ${serviceName}.`);
     }
+    const components = new URL(sourceUrl);
     const url = new URL(components.pathname, instanceBaseUrl);
     url.search = components.search;
     url.hash = components.hash;
@@ -253,6 +263,7 @@ export function makeInstances({ rawInstances, serviceName }: { rawInstances: any
 export async function startSearching(customConfig: ServiceConfig): Promise<void> {
     const config = serviceConfig(customConfig);
     const urlParams = new URLSearchParams(window.location.search);
+
     const sourceUrl = urlParams.get('url');
     if (sourceUrl === null) {
         setStatus('error', 'No "url" parameter provided.');
@@ -260,15 +271,20 @@ export async function startSearching(customConfig: ServiceConfig): Promise<void>
     } else if (sourceUrl.length === 0) {
         setStatus('error', '"url" parameter is empty.');
         return;
+    } else if (!isValidSourceUrl({ sourceUrl, serviceName: config.serviceName })) {
+        setStatus('error', `${sourceUrl} is not a valid URL for ${config.serviceName}.`);
+        return;
     }
     const cacheExpiry = urlParams.get('cache_expiry');
     if (cacheExpiry !== null) {
         config.cacheExpiry = parseInt(cacheExpiry);
     }
+
     const autoRedirect = urlParams.get('auto_redirect');
     if (autoRedirect !== null) {
         config.autoRedirect = !['false', 'no', '0'].includes(autoRedirect);
     }
+
     const countryCodes = urlParams.get('countries');
     if (countryCodes !== null) {
         config.countryCodes = countryCodes.split(',').map(code => code.trim());
