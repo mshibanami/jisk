@@ -17,6 +17,7 @@
     "serve-eleventy": "ELEVENTY_ENV=development npx eleventy --serve",
     "dev": "npx npm-run-all -p tsc-watch serve-eleventy",
     "build": "./scripts/build.sh",
+    "update-test-resources": "./scripts/download_instances.sh --base-dir tests/resources",
     "test": "npx tsc && npx playwright test",
     "vscode-debug": "npx tsc && npx playwright test"
   },

@@ -2,8 +2,6 @@
 
 set -ex
 
-cd "$(dirname "$0")/.."
-
 SERVICES=(
     "invidious https://api.invidious.io/instances.json?pretty=1&sort_by=type,users"
     "redlib https://raw.githubusercontent.com/redlib-org/redlib-instances/refs/heads/main/instances.json"
@@ -11,6 +9,22 @@ SERVICES=(
 )
 
 BASE_DIR="src/_data/generated"
+
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+    --base-dir)
+        BASE_DIR="$2"
+        shift
+        ;;
+    *)
+        echo "Unknown parameter passed: $1"
+        exit 1
+        ;;
+    esac
+    shift
+done
+
+cd "$(dirname "$0")/.."
 
 for service in "${SERVICES[@]}"; do
     service_name=$(echo "$service" | awk '{print $1}')
