@@ -265,9 +265,9 @@ export async function startSearching(customConfig: ServiceConfig): Promise<void>
     if (cacheExpiry !== null) {
         config.cacheExpiry = parseInt(cacheExpiry);
     }
-    const auto_redirect = urlParams.get('auto_redirect');
-    if (auto_redirect !== null) {
-        config.autoRedirect = !['false', 'no', '0'].includes(auto_redirect);
+    const autoRedirect = urlParams.get('auto_redirect');
+    if (autoRedirect !== null) {
+        config.autoRedirect = !['false', 'no', '0'].includes(autoRedirect);
     }
     const countryCodes = urlParams.get('countries');
     if (countryCodes !== null) {
