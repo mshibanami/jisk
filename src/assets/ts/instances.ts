@@ -107,6 +107,7 @@ function removeCachedInstance(config: ServiceConfig) {
 
 function checkInstanceAvailability(instance: Instance, timeout: number): Promise<boolean> {
     return new Promise((resolve) => {
+        setStatus('loading', `Checking ${new URL(instance.url).hostname}...`);
         const img = new Image();
         const timer = setTimeout(() => {
             img.src = '';
