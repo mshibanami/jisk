@@ -124,7 +124,7 @@ function checkInstanceAvailability(instance: Instance, timeout: number): Promise
             resolve(false);
         };
 
-        img.src = instance.faviconUrl ?? `${instance.url}/favicon.ico`;
+        img.src = instance.faviconUrl ?? new URL("favicon.ico", instance.url).toString();
     });
 }
 
