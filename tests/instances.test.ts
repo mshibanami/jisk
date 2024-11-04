@@ -1,10 +1,10 @@
 import { test, expect, test as setup } from '@playwright/test';
-import { filterSelectableInstances, findWorkingInstance, Instance, makeDestinationUrl, makeInstances, ServiceConfig, serviceConfig, ServiceName } from '../src/assets/ts/instances';
+import { filterSelectableInstances, findWorkingInstance, Instance, makeDestinationUrl, makeInstances, ServiceConfig, serviceConfig, serviceId } from '../src/assets/ts/instances';
 
 type DestinationURLTestCase = {
   instanceBaseUrl: string;
   sourceUrl: string;
-  serviceName: ServiceName;
+  serviceId: serviceId;
   expected: string | Error;
 };
 
@@ -29,23 +29,23 @@ test.describe('Test for instances.ts', () => {
       {
         instanceBaseUrl,
         sourceUrl: 'https://www.reddit.com/r/privacy',
-        serviceName: 'redlib',
+        serviceId: 'redlib',
         expected: 'https://example.com/r/privacy',
       },
       {
         instanceBaseUrl,
         sourceUrl: 'https://www.reddit.com/r/privacy/',
-        serviceName: 'invidious',
+        serviceId: 'invidious',
         expected: Error('https://www.reddit.com/r/privacy/ is not a valid URL for invidious.'),
       },
     ]
 
-    for (const { instanceBaseUrl, sourceUrl, serviceName, expected } of testCases) {
+    for (const { instanceBaseUrl, sourceUrl, serviceId, expected } of testCases) {
       try {
         const destination = makeDestinationUrl({
           instanceBaseUrl,
           sourceUrl,
-          serviceName,
+          serviceId,
         });
         expect(destination).toBe(expected);
       } catch (error) {
@@ -57,7 +57,7 @@ test.describe('Test for instances.ts', () => {
   test('should parse instances.json', async () => {
     {
       const rawInstances = require('./resources/invidious/instances.json');
-      const parsedInstances = makeInstances({ rawInstances, serviceName: 'invidious' });
+      const parsedInstances = makeInstances({ rawInstances, serviceId: 'invidious' });
       expect(parsedInstances.length).toBe(8);
       const instance = parsedInstances[0]
       expect(instance.url).toBeDefined();
@@ -66,7 +66,7 @@ test.describe('Test for instances.ts', () => {
     }
     {
       const rawInstances = require('./resources/redlib/instances.json');
-      const parsedInstances = makeInstances({ rawInstances, serviceName: 'redlib' });
+      const parsedInstances = makeInstances({ rawInstances, serviceId: 'redlib' });
       expect(parsedInstances.length).toBe(29);
       const instance = parsedInstances[0]
       expect(instance.url).toBeDefined();
@@ -74,7 +74,7 @@ test.describe('Test for instances.ts', () => {
     }
     {
       const rawInstances = require('./resources/rimgo/instances.json');
-      const parsedInstances = makeInstances({ rawInstances, serviceName: 'rimgo' });
+      const parsedInstances = makeInstances({ rawInstances, serviceId: 'rimgo' });
       expect(parsedInstances.length).toBe(21);
       const instance = parsedInstances[0]
       expect(instance.url).toBeDefined();

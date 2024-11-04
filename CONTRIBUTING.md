@@ -16,7 +16,7 @@ Go to the [Issues](https://github.com/mshibanami/jisk/issues) tab and open an is
 3. Run `./scripts/download_instances.sh` to download the list of instances.
 4. Add a new `<new_service>.njk` file to the `src` folder.
 5. In terms of [instances.ts](src/assets/ts/instances.ts):
-   1. Add a new case to the `ServiceName` type.
-   2. Add a switch case in `makeInstances()` and `makeDestinationUrl()`.
+   1. Add a new case to the `serviceId` type.
+   2. Add a new switch case in `makeInstances()`, `makeDestinationUrl()`, etc.
 6. (Optional) If possible, add tests to [instances.test.ts](tests/instances.test.ts).
 7. Run `npm run dev` to check if the new service is displayed correctly.

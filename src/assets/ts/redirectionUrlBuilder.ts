@@ -1,11 +1,11 @@
-import { ServiceName } from "./instances";
+import { serviceId } from "./instances";
 
 export function makeRedirectionUrl({
     baseUrl,
     sourceUrl,
     encodesSourceUrl,
     cacheExpiry,
-    serviceName,
+    serviceId,
     hasHtmlExtension,
     countries
 }: {
@@ -13,11 +13,11 @@ export function makeRedirectionUrl({
     sourceUrl: string,
     encodesSourceUrl: boolean,
     cacheExpiry: number,
-    serviceName: ServiceName,
+    serviceId: serviceId,
     hasHtmlExtension: boolean,
     countries: string[]
 }): string | null {
-    const resourceName = serviceName + (hasHtmlExtension ? '.html' : '')
+    const resourceName = serviceId + (hasHtmlExtension ? '.html' : '')
     const components = new URL(resourceName, baseUrl)
     if (sourceUrl.length > 0) {
         if (encodesSourceUrl) {

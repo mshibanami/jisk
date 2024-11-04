@@ -75,7 +75,7 @@ title: jisk
   });
 
   function updateUI() {
-    const serviceName = document.getElementById('service').value;
+    const serviceId = document.getElementById('service').value;
     const urlEl = document.getElementById('url')
     const sourceUrl = urlEl.value;
     const encodesSourceUrl = document.getElementById('encodesUrl').checked;
@@ -85,13 +85,13 @@ title: jisk
       .filter(country => country.length > 0);
     const cacheExpiry = document.getElementById('cache-expiry').value;
 
-    urlEl.placeholder = services.find(service => service.id === serviceName).urlPlaceholder;
+    urlEl.placeholder = services.find(service => service.id === serviceId).urlPlaceholder;
     {# TODO: Remove this when this issue is completed: https://codeberg.org/Codeberg/pages-server/issues/298 #}
     const hasHtmlExtension = new URL(baseUrl).hostname.endsWith('.codeberg.page')
 
     const redirectUrl = makeRedirectionUrl({
       baseUrl,
-      serviceName,
+      serviceId,
       sourceUrl,
       encodesSourceUrl,
       countries,

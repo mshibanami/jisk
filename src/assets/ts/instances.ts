@@ -27,12 +27,12 @@ const ui = new Proxy(_ui, {
         return true;
     }
 });
-export type ServiceName = 'invidious' | 'redlib' | 'rimgo';
+export type serviceId = 'invidious' | 'redlib' | 'rimgo';
 export type Status = 'idle' | 'loading' | 'success' | 'error';
 
 export interface ServiceConfig {
     instances: Instance[];
-    serviceName: ServiceName;
+    serviceId: serviceId;
     customCacheKey: string;
     cacheExpiry: number;
     statusTimeout: number;
@@ -60,7 +60,7 @@ export function serviceConfig(overrides: Partial<ServiceConfig>): ServiceConfig 
 }
 
 function cacheKeyForService(config: ServiceConfig) {
-    return config.customCacheKey ?? `${config.serviceName}_cache`;
+    return config.customCacheKey ?? `${config.serviceId}_cache`;
 }
 
 function cachedInstance(config: ServiceConfig): Instance | null {
@@ -195,9 +195,9 @@ export function updateUI() {
     }
 }
 
-function isValidSourceUrl({ sourceUrl, serviceName }: { sourceUrl: string, serviceName: ServiceName }): boolean {
+function isValidSourceUrl({ sourceUrl, serviceId }: { sourceUrl: string, serviceId: serviceId }): boolean {
     const hostname = new URL(sourceUrl).hostname;
-    switch (serviceName) {
+    switch (serviceId) {
         case 'invidious':
             return hostname.endsWith('youtube.com');
         case 'redlib':
@@ -205,7 +205,7 @@ function isValidSourceUrl({ sourceUrl, serviceName }: { sourceUrl: string, servi
         case 'rimgo':
             return hostname.endsWith('imgur.com');
         default:
-            console.error('Invalid service name: ', serviceName);
+            console.error('Invalid service name: ', serviceId);
             return false;
     }
 }
@@ -213,14 +213,14 @@ function isValidSourceUrl({ sourceUrl, serviceName }: { sourceUrl: string, servi
 export function makeDestinationUrl({
     instanceBaseUrl,
     sourceUrl,
-    serviceName
+    serviceId
 }: {
     instanceBaseUrl: string;
     sourceUrl: string;
-    serviceName: ServiceName;
+    serviceId: serviceId;
 }): string | null {
-    if (!isValidSourceUrl({ sourceUrl, serviceName })) {
-        throw new Error(`${sourceUrl} is not a valid URL for ${serviceName}.`);
+    if (!isValidSourceUrl({ sourceUrl, serviceId })) {
+        throw new Error(`${sourceUrl} is not a valid URL for ${serviceId}.`);
     }
     const components = new URL(sourceUrl);
     const url = new URL(components.pathname, instanceBaseUrl);
@@ -229,8 +229,8 @@ export function makeDestinationUrl({
     return url.toString();
 }
 
-export function makeInstances({ rawInstances, serviceName }: { rawInstances: any, serviceName: ServiceName }): Instance[] {
-    switch (serviceName) {
+export function makeInstances({ rawInstances, serviceId }: { rawInstances: any, serviceId: serviceId }): Instance[] {
+    switch (serviceId) {
         case 'invidious':
             return (rawInstances as any[][]).map(([_, info]) => {
                 return {
@@ -271,8 +271,8 @@ export async function startSearching(customConfig: ServiceConfig): Promise<void>
     } else if (sourceUrl.length === 0) {
         setStatus('error', '"url" parameter is empty.');
         return;
-    } else if (!isValidSourceUrl({ sourceUrl, serviceName: config.serviceName })) {
-        setStatus('error', `${sourceUrl} is not a valid URL for ${config.serviceName}.`);
+    } else if (!isValidSourceUrl({ sourceUrl, serviceId: config.serviceId })) {
+        setStatus('error', `${sourceUrl} is not a valid URL for ${config.serviceId}.`);
         return;
     }
     const cacheExpiry = urlParams.get('cache_expiry');
@@ -303,7 +303,7 @@ export async function startSearching(customConfig: ServiceConfig): Promise<void>
         const redirectUrl = makeDestinationUrl({
             instanceBaseUrl: workingInstance.url,
             sourceUrl: sourceUrl,
-            serviceName: config.serviceName
+            serviceId: config.serviceId
         });
         if (!redirectUrl) {
             throw new Error('Invalid target URL.');
