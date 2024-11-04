@@ -14,9 +14,10 @@
   },
   "scripts": {
     "tsc-watch": "npx tsc --watch",
-    "serve-eleventy": "ELEVENTY_ENV=development npx eleventy --serve",
+    "serve-eleventy": "npx eleventy --serve",
     "dev": "npx npm-run-all -p tsc-watch serve-eleventy",
-    "build": "./scripts/build.sh",
+    "build-github-pages": "ELEVENTY_ENV=GITHUB ./scripts/build.sh",
+    "build-codeberg-pages": "ELEVENTY_ENV=CODEBERG ./scripts/build.sh",
     "update-test-resources": "./scripts/download_instances.sh --base-dir tests/resources",
     "test": "npx tsc && npx playwright test",
     "vscode-debug": "npx tsc && npx playwright test"

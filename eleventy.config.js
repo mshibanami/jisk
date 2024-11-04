@@ -3,8 +3,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("src/");
   eleventyConfig.configureErrorReporting({ allowMissingExtensions: true });
 
-  if (process.env.ELEVENTY_ENV === "production") {
-    eleventyConfig.addGlobalData("baseUrl", "https://mshibanami.github.io/jisk/");
+  switch (process.env.ELEVENTY_ENV) {
+    case "GITHUB":
+      eleventyConfig.addGlobalData("baseUrl", "https://mshibanami.github.io/jisk/");
+    case "CODEBERG":
+      eleventyConfig.addGlobalData("baseUrl", "https://mshibanami.codeberg.page/jisk/");
   }
 
   eleventyConfig.addGlobalData("permalink", () => {

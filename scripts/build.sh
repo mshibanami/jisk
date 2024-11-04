@@ -8,10 +8,11 @@ cd "$(dirname "$0")/.."
 
 npx tsc
 
-ELEVENTY_ENV=production npx eleventy
+# Specify ELEVENTY_ENV to use the correct environment
+npx eleventy
 
-OUT_DIR="./out"
-
+# OUT_DIR="./out"
+#
 # Minify
 # for file in "$OUT_DIR"/*.{html,js,css}; do
 #     [ -f "$file" ] || continue
