@@ -27,7 +27,7 @@ const ui = new Proxy(_ui, {
         return true;
     }
 });
-export type serviceId = 'invidious' | 'redlib' | 'rimgo';
+export type serviceId = 'invidious' | 'quetre' | 'redlib' | 'rimgo';
 export type Status = 'idle' | 'loading' | 'success' | 'error';
 
 export interface ServiceConfig {
@@ -109,6 +109,8 @@ function checkInstanceAvailability(instance: Instance, timeout: number): Promise
     return new Promise((resolve) => {
         setStatus('loading', `Checking ${new URL(instance.url).hostname}...`);
         const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.referrerPolicy = 'origin';
         const timer = setTimeout(() => {
             img.src = '';
             resolve(false);
@@ -200,6 +202,8 @@ function isValidSourceUrl({ sourceUrl, serviceId }: { sourceUrl: string, service
     switch (serviceId) {
         case 'invidious':
             return hostname.endsWith('youtube.com');
+        case 'quetre':
+            return hostname.endsWith('quora.com');
         case 'redlib':
             return hostname.endsWith('reddit.com');
         case 'rimgo':
@@ -239,6 +243,14 @@ export function makeInstances({ rawInstances, serviceId }: { rawInstances: any, 
                     faviconUrl: info.monitor?.favicon_url
                 }
             })
+        case 'quetre':
+            return (rawInstances as any[])
+                .map(instance => {
+                    return {
+                        url: instance.clearnet,
+                        countryCode: instance.country
+                    }
+                })
         case 'redlib':
             return (rawInstances.instances as any[])
                 .map(instance => {

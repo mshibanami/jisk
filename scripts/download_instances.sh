@@ -4,6 +4,7 @@ set -ex
 
 SERVICES=(
     "invidious https://api.invidious.io/instances.json?pretty=1&sort_by=type,users"
+    "quetre https://raw.githubusercontent.com/zyachel/quetre/refs/heads/main/instances.json"
     "redlib https://raw.githubusercontent.com/redlib-org/redlib-instances/refs/heads/main/instances.json"
     "rimgo https://codeberg.org/rimgo/rimgo/raw/branch/main/instances.json"
 )

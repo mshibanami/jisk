@@ -1,0 +1,85 @@
+[
+    {
+        "clearnet": "https://quetre.iket.me/",
+        "country": "CA"
+    },
+    {
+        "clearnet": "https://qr.vern.cc/",
+        "tor": "http://qr.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion",
+        "i2p": "http://vernnflenvsqccuanaun7yydnmturi4jkyxlyzhn6ultpje66c3q.b32.i2p",
+        "country": "US"
+    },
+    {
+        "clearnet": "https://quetre.pussthecat.org/",
+        "country": "DE"
+    },
+    {
+        "clearnet": "https://quetre.tokhmi.xyz/",
+        "country": "US"
+    },
+    {
+        "clearnet": "https://quetre.privacydev.net/",
+        "tor": "http://quetre.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion",
+        "country": "FR"
+    },
+    {
+        "clearnet": "https://ask.habedieeh.re/",
+        "tor": "http://ask.habeehrhadazsw3izbrbilqajalfyqqln54mrja3iwpqxgcuxnus7eid.onion",
+        "country": "CA"
+    },
+    {
+        "clearnet": "https://quetre.blackdrgn.nl/",
+        "country": "DE"
+    },
+    {
+        "clearnet": "https://quetre.lunar.icu/",
+        "country": "DE"
+    },
+    {
+        "clearnet": "https://q.opnxng.com/",
+        "country": "SG"
+    },
+    {
+        "clearnet": "https://quetre.catsarch.com/",
+        "tor": "http://quetre.catsarchywsyuss6jdxlypsw5dc7owd5u5tr6bujxb7o6xw2hipqehyd.onion",
+        "i2p": "http://5vtstw6besbeadtll62wy3prwq7o6nxxle2euhtoskmcrcpaa43q.b32.i2p",
+        "country": "US"
+    },
+    {
+        "clearnet": "https://ask.sudovanilla.org/",
+        "country": "US"
+    },
+    {
+        "clearnet": "https://quetre.drgns.space/",
+        "country": "US"
+    },
+    {
+        "clearnet": "https://quetre.r4fo.com/",
+        "country": "NL"
+    },
+    {
+        "clearnet": "https://quetre.ducks.party/",
+        "country": "NL"
+    },
+    {
+        "clearnet": "https://quetre.nadeko.net/",
+        "tor": "http://quetre.nadekobxalvyqrhvp3m2atfgdmzp5vcwdmu3wo4htecwjkodancfmgid.onion",
+        "country": "CL"
+    },
+    {
+        "clearnet": "https://quetre.private.coffee/",
+        "tor": "http://quetre.coffee2m3bjsrrqqycx6ghkxrnejl2q6nl7pjw2j4clchjj6uk5zozad.onion",
+        "country": "AT"
+    },
+    {
+        "clearnet": "https://quetre.canine.tools/"
+    },
+    {
+        "clearnet": "https://qt.bloat.cat/",
+        "country": "DE"
+    },
+    {
+        "clearnet": "https://quetre.gitro.xyz",
+        "country": "DE"
+    }
+]

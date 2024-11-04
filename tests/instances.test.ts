@@ -80,9 +80,17 @@ test.describe('Test for instances.ts', () => {
       expect(instance.url).toBeDefined();
       expect(instance.countryCode).toBeDefined();
     }
+    {
+      const rawInstances = require('./resources/quetre/instances.json');
+      const parsedInstances = makeInstances({ rawInstances, serviceId: 'quetre' });
+      expect(parsedInstances.length).toBe(19);
+      const instance = parsedInstances[0]
+      expect(instance.url).toBeDefined();
+      expect(instance.countryCode).toBeDefined();
+    }
   })
 
-  test('should filter by country codes', async ({ page }) => {
+  test('should filter by country codes', async () => {
     const instances: Instance[] = [
       {
         url: 'https://example.com/',

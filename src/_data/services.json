@@ -6,6 +6,11 @@
             "urlPlaceholder": "https://youtube.com/..."
         },
         {
+            "id": "quetre",
+            "name": "Quetre",
+            "urlPlaceholder": "https://quora.com/..."
+        },
+        {
             "id": "redlib",
             "name": "Redlib",
             "urlPlaceholder": "https://www.reddit.com/..."
