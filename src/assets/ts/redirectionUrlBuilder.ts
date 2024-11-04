@@ -1,8 +1,24 @@
 import { ServiceName } from "./instances";
 
-export function makeRedirectionUrl({ baseUrl, sourceUrl, encodesSourceUrl, cacheExpiry, serviceName, countries }: { baseUrl: string, sourceUrl: string, encodesSourceUrl: boolean, cacheExpiry: number, serviceName: ServiceName, countries: string[] }): string | null {
-    const components = new URL(serviceName, baseUrl)
-
+export function makeRedirectionUrl({
+    baseUrl,
+    sourceUrl,
+    encodesSourceUrl,
+    cacheExpiry,
+    serviceName,
+    hasHtmlExtension,
+    countries
+}: {
+    baseUrl: string,
+    sourceUrl: string,
+    encodesSourceUrl: boolean,
+    cacheExpiry: number,
+    serviceName: ServiceName,
+    hasHtmlExtension: boolean,
+    countries: string[]
+}): string | null {
+    const resourceName = serviceName + (hasHtmlExtension ? '.html' : '')
+    const components = new URL(resourceName, baseUrl)
     if (sourceUrl.length > 0) {
         if (encodesSourceUrl) {
             components.searchParams.set('url', sourceUrl)

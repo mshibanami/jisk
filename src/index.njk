@@ -61,7 +61,7 @@ title: jisk
 </section>
 
 <script type="module">
-  import { makeRedirectionUrl } from './assets/js/makeRedirectionUrl.js';
+  import { makeRedirectionUrl } from './assets/js/redirectionUrlBuilder.js';
 
   const services = {{ services.services | dump | safe }}
 
@@ -86,8 +86,18 @@ title: jisk
     const cacheExpiry = document.getElementById('cache-expiry').value;
 
     urlEl.placeholder = services.find(service => service.id === serviceName).urlPlaceholder;
+    {# TODO: Remove this when this issue is completed: https://codeberg.org/Codeberg/pages-server/issues/298 #}
+    const hasHtmlExtension = new URL(baseUrl).hostname.endsWith('.codeberg.page')
 
-    const redirectUrl = makeRedirectionUrl({ baseUrl, serviceName, sourceUrl, encodesSourceUrl, countries, cacheExpiry });
+    const redirectUrl = makeRedirectionUrl({
+      baseUrl,
+      serviceName,
+      sourceUrl,
+      encodesSourceUrl,
+      countries,
+      hasHtmlExtension,
+      cacheExpiry,
+    });
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = `<p>Generated Redirect URL:</p><a href="${redirectUrl}" target="_blank">${redirectUrl}</a>`;
   }
