@@ -1,7 +1,7 @@
 {
   "name": "jisk",
   "version": "1.0.0",
-  "description": "<https://mshibanami.github.io/jisk>",
+  "description": "<https://github.com/mshibanami/jisk>",
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
     "@playwright/test": "1.48.2",
