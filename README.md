@@ -9,12 +9,11 @@ This is a web tool that helps you jump from a specific web service to an alterna
 
 This is especially useful when combined with a browser extension that allows you to automatically set up arbitrary redirect rules, such as:
 
-- Safari (iOS & macOS)
-    - [Redirect Web for Safari](https://apps.apple.com/au/app/redirect-web-for-safari/id1571283503) by me! 😄
-- Firefox
-    - [Redirector](https://addons.mozilla.org/en-US/firefox/addon/redirector/) by Einar Egilsson
-- Google Chrome
-    - [Redirector](https://chromewebstore.google.com/detail/redirector/ocgpenflpmgnfapjedencafcfakcekcd) by Einar Egilsson
+- Safari: [Redirect Web for Safari](https://apps.apple.com/app/redirect-web-for-safari/id1571283503)
+- Firefox: [Redirector](https://addons.mozilla.org/en-US/firefox/addon/redirector/)
+- Google Chrome: [Redirector](https://chrome.google.com/webstore/detail/redirector/ocgpenflpmgnfapjedencafcfakcekcd)
+
+Or you can use a user script manager such as [Tampermonkey](https://www.tampermonkey.net), [Greasemonkey](https://www.greasespot.net), [Violentmonkey](https://violentmonkey.github.io), etc.
 
 ## Example
 
@@ -27,10 +26,10 @@ First, open the following URL and follow the instructions displayed:
 Then you'll get a redirection URL like this:
 
 ```url
-https://mshibanami.codeberg.page/jisk/redlib?url=...
+https://mshibanami.codeberg.page/jisk/redlib.html?url=...
 ```
 
-Then, using your browser extension, set up a redirect rule that redirects from the original Reddit URL to `mshibanami.codeberg.page/jisk/redlib?url=...`.
+Then, using your browser extension, set up a redirect rule that redirects from the original Reddit URL to `https://mshibanami.codeberg.page/jisk/redlib.html?url=...`.
 
 ## How does it work?
 
@@ -51,9 +50,17 @@ You can specify the following query parameters for the redirection URL for each 
 
 ## Q&A
 
+### Why not LibRedirect?
+
+[LibRedirect](https://libredirect.github.io) is not available on all platforms, such as Safari. jisk is a workaround for such platforms. Originally, jisk was made to handle the need of auto-selecting instances using [Redirect Web](https://apps.apple.com/app/redirect-web-for-safari/id1571283503), as discussed [here](https://github.com/mshibanami/redirect-web/issues/61).
+
+Also, jisk provides some unique features, such as filtering by countries. So, it's not necessarily just a workaround for LibRedirect.
+
+However, LibRedirect provides a more seamless experience as it doesn't display the "Redirecting..." page. So, whether to use jisk or LibRedirect depends on your preference.
+
 ### Why is this hosted on both Codeberg Pages and GitHub Pages?
 
-Because one of the main target groups for this tool is people who are serious about privacy, it's hosted on Codeberg Pages by Codeberg e.V., a non-profit organization in Germany that highly respects privacy.
+Because one of the main target groups for this tool is privacy enthusiasts, it is hosted on Codeberg Pages, provided by Codeberg e.V., a non-profit organization in Germany that highly respects privacy.
 
 It's also hosted on GitHub Pages to make it more accessible to a wider audience.
 
