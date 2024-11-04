@@ -66,6 +66,8 @@ title: jisk
   if (baseUrl === '') {
     baseUrl = window.location.origin;
   }
+  {# TODO: Remove this when this issue is completed: https://codeberg.org/Codeberg/pages-server/issues/298 #}
+  const hasHtmlExtension = new URL(baseUrl).hostname.endsWith('.codeberg.page')
 
   function updateUI() {
     const serviceId = document.getElementById('service').value;
@@ -79,8 +81,6 @@ title: jisk
     const cacheExpiry = document.getElementById('cache-expiry').value;
 
     urlEl.placeholder = services.find(service => service.id === serviceId).urlPlaceholder;
-    {# TODO: Remove this when this issue is completed: https://codeberg.org/Codeberg/pages-server/issues/298 #}
-    const hasHtmlExtension = new URL(baseUrl).hostname.endsWith('.codeberg.page')
 
     const redirectUrl = makeRedirectionUrl({
       baseUrl,
@@ -114,6 +114,7 @@ title: jisk
     for (const example of examples) {
       const redirectUrl = makeRedirectionUrl({
         baseUrl,
+        hasHtmlExtension,
         ...example,
       });
       examplesEl.innerHTML += `<li><a href="${redirectUrl}" target="_blank">${redirectUrl}</a></li>`;
