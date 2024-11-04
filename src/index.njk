@@ -38,7 +38,7 @@ title: jisk
 
   <div class="form-group">
     <label for="countries">Country codes (optional):</label>
-    <input type="text" id="countries" name="countries" placeholder="JP, TW, CN">
+    <input type="text" id="countries" name="countries" placeholder="JP, TW">
     <small>Country codes for the locations of the instances (e.g., JP for Japan, TW for Taiwan), listed in a comma-separated, case-insensitive format.</small>
   </div>
 
@@ -51,12 +51,9 @@ title: jisk
   <div id="result" class="example"></div>
 </section>
 
-<section class="info example">
+<section id="examples" class="info example">
   <h3>Examples</h3>
   <ul>
-    <li><a class="video-link" href="invidious?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DykG90lE2fGA"></a></li>
-    <li><a class="video-link" href="redlib?url=https%3A%2F%2Fnew.reddit.com%2Fr%2Fjavascript%2Fcomments%2Fo4tjz6"></a></li>
-    <li><a class="video-link" href="rimgo?url=https%3A%2F%2Fimgur.com%2Fgallery%2Fdaily-snick-pic-43-ZKmPPvy%23%2Ft%2Faww"></a></li>
   </ul>
 </section>
 
@@ -69,10 +66,6 @@ title: jisk
   if (baseUrl === '') {
     baseUrl = window.location.origin;
   }
-
-  document.querySelectorAll('.video-link').forEach(link => {
-    link.textContent = link.href;
-  });
 
   function updateUI() {
     const serviceId = document.getElementById('service').value;
@@ -102,6 +95,31 @@ title: jisk
     resultDiv.innerHTML = `<p>Generated Redirect URL:</p><a href="${redirectUrl}" target="_blank">${redirectUrl}</a>`;
   }
 
+  function setupExamples() {
+    const examplesEl = document.getElementById('examples').querySelector('ul');
+    const examples = [
+      {
+        serviceId: 'invidious',
+        sourceUrl: 'https://www.youtube.com/watch?v=FMZDJ0yVA3g',
+      },
+      {
+        serviceId: 'redlib',
+        sourceUrl: 'https://new.reddit.com/r/mildlyinteresting/comments/7ub9ax/local_mexican_restaurant_used_to_be_a_chinese/',
+      },
+      {
+        serviceId: 'rimgo',
+        sourceUrl: 'https://imgur.com/gallery/daily-snick-pic-43-ZKmPPvy#/t/aww',
+      }
+    ]
+    for (const example of examples) {
+      const redirectUrl = makeRedirectionUrl({
+        baseUrl,
+        ...example,
+      });
+      examplesEl.innerHTML += `<li><a href="${redirectUrl}" target="_blank">${redirectUrl}</a></li>`;
+    }
+  }
+
   document.getElementById('service').addEventListener('change', updateUI);
   document.getElementById('url').addEventListener('input', updateUI);
   document.getElementById('encodesUrl').addEventListener('change', updateUI);
@@ -109,5 +127,6 @@ title: jisk
   document.getElementById('cache-expiry').addEventListener('input', updateUI);
 
   updateUI();
+  setupExamples();
 </script>
 {% endblock %}
