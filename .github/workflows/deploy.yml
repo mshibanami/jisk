@@ -17,29 +17,44 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  build_github_pages:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install dependencies
         run: npm ci
-      - name: Build
-        run: npm run build
-      - name: Upload artifact
+      - name: Build for GitHub Pages
+        run: npm run build-github-pages
+      - name: Upload GitHub Pages artifact
         uses: actions/upload-artifact@v3
         with:
-          name: build-artifact
+          name: build-github-pages-artifact
+          path: "./out"
+
+  build_codeberg_pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Build for Codeberg Pages
+        run: npm run build-codeberg-pages
+      - name: Upload Codeberg Pages artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-codeberg-pages-artifact
           path: "./out"
 
   deploy_to_github_pages:
-    needs: build
+    needs: build_github_pages
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifact
+      - name: Download GitHub Pages artifact
         uses: actions/download-artifact@v3
         with:
-          name: build-artifact
+          name: build-github-pages-artifact
           path: "./out"
       - name: Setup Pages
         uses: actions/configure-pages@v3
@@ -52,13 +67,13 @@ jobs:
         uses: actions/deploy-pages@v2
 
   deploy_to_codeberg_pages:
-    needs: build
+    needs: build_codeberg_pages
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifact
+      - name: Download Codeberg Pages artifact
         uses: actions/download-artifact@v3
         with:
-          name: build-artifact
+          name: build-codeberg-pages-artifact
           path: "./out"
       - name: Setup Git Config
         run: |
