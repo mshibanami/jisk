@@ -7,7 +7,8 @@ export function makeRedirectionUrl({
     encodesSourceUrl,
     cacheExpiry,
     hasHtmlExtension,
-    countries
+    countries,
+    preferredInstanceHosts,
 }: {
     baseUrl: string,
     sourceUrl: string,
@@ -15,7 +16,8 @@ export function makeRedirectionUrl({
     encodesSourceUrl?: boolean,
     cacheExpiry?: number,
     hasHtmlExtension?: boolean,
-    countries?: string[]
+    countries?: string[],
+    preferredInstanceHosts?: string[],
 }): string | null {
     const resourceName = serviceId + (hasHtmlExtension ? '.html' : '')
     const components = new URL(resourceName, baseUrl)
@@ -31,6 +33,9 @@ export function makeRedirectionUrl({
     }
     if (countries && countries.length > 0) {
         components.searchParams.set('countries', countries.join(','))
+    }
+    if (preferredInstanceHosts && preferredInstanceHosts.length > 0) {
+        components.searchParams.set('preferred_instances', preferredInstanceHosts.join(','))
     }
     return components.toString()
 }

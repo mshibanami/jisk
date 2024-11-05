@@ -47,6 +47,7 @@ You can specify the following query parameters for the redirection URL for each 
 - `cache_expiry`: The cache expiry time in seconds. The default is 86,400 seconds (1 day). If you set it to `0`, caching will be disabled.
 - `auto_redirect`: If `false`, the page will not redirect automatically. This is also useful for debugging redirection. The default is `true`.
 - `countries`: A comma-separated list of country codes. If you specify this parameter, the redirection will be limited to the specified countries. The default is no limitation.
+- `preferred_instances`: A comma-separated list of the host name (e.g. `example.com`) of the preferred instances. The specified instances will be prioritized to check availability.
 
 ## Q&A
 

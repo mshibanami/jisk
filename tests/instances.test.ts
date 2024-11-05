@@ -1,5 +1,5 @@
 import { test, expect, test as setup } from '@playwright/test';
-import { filterSelectableInstances, findWorkingInstance, Instance, makeDestinationUrl, makeInstances, ServiceConfig, serviceConfig, serviceId } from '../src/assets/ts/instances';
+import { filterSelectableInstances, Instance, makeDestinationUrl, makeInstances, orderedInstances, ServiceConfig, serviceConfig, serviceId } from '../src/assets/ts/instances';
 
 type DestinationURLTestCase = {
   instanceBaseUrl: string;
@@ -82,15 +82,15 @@ test.describe('Test for instances.ts', () => {
     }
   })
 
-  test('should filter by country codes', async ({ page }) => {
+  test('should filter by country codes', async () => {
     const instances: Instance[] = [
       {
-        url: 'https://example.com/',
+        url: 'https://host1.example.com/',
         countryCode: 'JP',
         uptime: 100,
       },
       {
-        url: 'https://example.com/',
+        url: 'https://host2.example.com/',
         countryCode: 'TW',
       },
     ];
@@ -116,6 +116,59 @@ test.describe('Test for instances.ts', () => {
       expect(filtered.length).toBe(2);
       expect(filtered[0].countryCode).toBe('JP');
       expect(filtered[1].countryCode).toBe('TW');
+    }
+  })
+
+  test('should order instances with preferred instances', async () => {
+    {
+      const instances: Instance[] = [
+        { url: 'https://host1.example.com/' },
+        { url: 'https://host2.example.com/' },
+        { url: 'https://host3.example.com/' },
+      ];
+      var config = serviceConfig(mockServiceConfig);
+      config.preferredInstanceHosts = ['host2.example.com', 'https://host3.example.com/'];
+      const ordered = orderedInstances({ config, instances });
+      expect(ordered.length).toBe(3);
+      expect(ordered[0].url).toBe('https://host2.example.com/');
+      expect(ordered[1].url).toBe('https://host3.example.com/');
+      expect(ordered[2].url).toBe('https://host1.example.com/');
+    }
+
+    {
+      const instances: Instance[] = [];
+      var config = serviceConfig(mockServiceConfig);
+      config.preferredInstanceHosts = ['host4.example.com', 'https://host3.example.com/'];
+      const ordered = orderedInstances({ config, instances });
+      expect(ordered.length).toBe(0);
+    }
+
+    {
+      const instances: Instance[] = [
+        { url: 'https://host1.example.com/' },
+        { url: 'https://host2.example.com/' },
+        { url: 'https://host3.example.com/' },
+      ];
+      var config = serviceConfig(mockServiceConfig);
+      config.preferredInstanceHosts = ['host4.example.com', 'host3.example.com'];
+      const ordered = orderedInstances({ config, instances });
+      expect(ordered.length).toBe(3);
+      expect(ordered[0].url).toBe('https://host3.example.com/');
+      expect(ordered[1].url).toBe('https://host1.example.com/');
+      expect(ordered[2].url).toBe('https://host2.example.com/');
+    }
+
+    {
+      const instances: Instance[] = [
+        { url: 'https://host1.example.com/' },
+        { url: 'https://host2.example.com/' },
+        { url: 'https://host3.example.com/' },
+      ];
+      var config = serviceConfig(mockServiceConfig);
+      const ordered = orderedInstances({ config, instances });
+      expect(ordered[0].url).toBe('https://host1.example.com/');
+      expect(ordered[1].url).toBe('https://host2.example.com/');
+      expect(ordered[2].url).toBe('https://host3.example.com/');
     }
   })
 })

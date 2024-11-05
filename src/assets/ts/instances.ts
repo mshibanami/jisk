@@ -38,6 +38,7 @@ export interface ServiceConfig {
     statusTimeout: number;
     autoRedirect: boolean;
     countryCodes?: string[];
+    preferredInstanceHosts?: string[];
 }
 
 function shuffled<T>(array: T[]): T[] {
@@ -78,7 +79,7 @@ function cachedInstance(config: ServiceConfig): Instance | null {
         }
         return instance;
     } catch (error) {
-        console.error('Cache read error:', error);
+        console.warn('Failed to read cache: ', (error as Error).message);
         return null;
     }
 }
@@ -101,7 +102,7 @@ function removeCachedInstance(config: ServiceConfig) {
         const cacheKey = cacheKeyForService(config);
         localStorage.removeItem(cacheKey);
     } catch (error) {
-        console.warn('Cache removal error:', error);
+        console.warn('Failed to remove cache: ', (error as Error).message);
     }
 }
 
@@ -128,22 +129,8 @@ function checkInstanceAvailability(instance: Instance, timeout: number): Promise
     });
 }
 
-export async function findWorkingInstance(config: ServiceConfig, instances: Instance[]): Promise<Instance | null> {
-    const shuffledInstances = shuffled(instances);
-    let targetInstances: Instance[];
-    const cached = cachedInstance(config);
-    if (cached) {
-        if (!shuffledInstances.map(instance => instance.url).includes(cached.url)) {
-            removeCachedInstance(config);
-            targetInstances = shuffledInstances;
-        } else {
-            // Prioritize the cached instance
-            targetInstances = [cached].concat(
-                shuffledInstances.filter(instance => instance.url !== cached.url));
-        }
-    } else {
-        targetInstances = shuffledInstances;
-    }
+async function findWorkingInstance({ config, instances }: { config: ServiceConfig, instances: Instance[] }): Promise<Instance | null> {
+    const targetInstances = orderedInstances({ config, instances });
     for (const instance of targetInstances) {
         if (await checkInstanceAvailability(instance, config.statusTimeout)) {
             cacheWorkingInstance(config, instance);
@@ -152,6 +139,51 @@ export async function findWorkingInstance(config: ServiceConfig, instances: Inst
     }
     removeCachedInstance(config);
     return null;
+}
+
+export function orderedInstances({ config, instances }: { config: ServiceConfig, instances: Instance[] }): Instance[] {
+    const cached = cachedInstance(config);
+    const cachedUrl = cached ? cached.url : null;
+    const cachedHostname = cachedUrl ? urlHostname(cachedUrl) : null;
+
+    const preferredHostnames = (config.preferredInstanceHosts || [])
+        .map(url => urlHostname(url));
+
+    const instancesWithHostnames = instances.map(instance => ({
+        instance,
+        hostname: urlHostname(instance.url)
+    }));
+
+    const ordered = instancesWithHostnames
+        .sort((a, b) => {
+            if (cachedHostname) {
+                if (a.hostname === cachedHostname) { return -1; }
+                if (b.hostname === cachedHostname) { return 1; }
+            }
+            const aIndex = preferredHostnames.indexOf(a.hostname);
+            const bIndex = preferredHostnames.indexOf(b.hostname);
+            const aPreferred = aIndex !== -1;
+            const bPreferred = bIndex !== -1;
+
+            if (aPreferred && bPreferred) { return aIndex - bIndex; }
+            if (aPreferred && !bPreferred) { return -1; }
+            if (!aPreferred && bPreferred) { return 1; }
+
+            return 0
+        })
+        .map(({ instance }) => instance);
+    return ordered;
+}
+
+
+function urlHostname(url: string): string | null {
+    try {
+        return new URL(url.includes('://') ? url : `https://${url}`)
+            .hostname
+            .toLowerCase();
+    } catch {
+        return null;
+    }
 }
 
 export async function filterSelectableInstances(config: ServiceConfig, instances: Instance[]): Promise<Instance[]> {
@@ -290,13 +322,21 @@ export async function startSearching(customConfig: ServiceConfig): Promise<void>
         config.countryCodes = countryCodes.split(',').map(code => code.trim());
     }
 
+    const preferredInstances = urlParams.get('preferred_instances');
+    if (preferredInstances !== null) {
+        config.preferredInstanceHosts = preferredInstances.split(',').map(url => url.trim());
+    }
+
     try {
         setStatus('loading', 'Checking for available instances...');
         const selectableInstances = await filterSelectableInstances(config, config.instances);
         if (selectableInstances.length === 0) {
             throw new Error('No selectable instances found. The filter conditions may be too strict.');
         }
-        const workingInstance = await findWorkingInstance(config, selectableInstances);
+        const workingInstance = await findWorkingInstance({
+            config,
+            instances: shuffled(selectableInstances)
+        });
         if (!workingInstance) {
             throw new Error('No available instances found. Please try again later.');
         }

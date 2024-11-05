@@ -42,6 +42,13 @@ title: jisk
     <small>Country codes for the locations of the instances (e.g., JP for Japan, TW for Taiwan), listed in a comma-separated, case-insensitive format.</small>
   </div>
 
+  {# preferred_instances #}
+  <div class="form-group">
+    <label for="preferred-instances">Preferred instances (optional):</label>
+    <input type="text" id="preferred-instances" name="preferred-instances" placeholder="preferred-instance.example.com">
+    <small>The specified instances will be prioritized to check availability.</small>
+  </div>
+
   <div class="form-group">
     <label for="cache-expiry">Cache expiry (seconds, optional):</label>
     <input type="number" id="cache-expiry" name="cache-expiry" placeholder="86400">
@@ -68,17 +75,21 @@ title: jisk
   }
   {# TODO: Remove this when this issue is completed: https://codeberg.org/Codeberg/pages-server/issues/298 #}
   const hasHtmlExtension = new URL(baseUrl).hostname.endsWith('.codeberg.page')
+  
+  function parseCommaSeparatedList(input) {
+    return input.split(',')
+      .map(item => item.trim())
+      .filter(item => item.length > 0);
+  }
 
   function updateUI() {
     const serviceId = document.getElementById('service').value;
     const urlEl = document.getElementById('url')
     const sourceUrl = urlEl.value;
     const encodesSourceUrl = document.getElementById('encodesUrl').checked;
-    const countries = document.getElementById('countries').value
-      .split(',')
-      .map(country => country.trim())
-      .filter(country => country.length > 0);
     const cacheExpiry = document.getElementById('cache-expiry').value;
+    const countries = parseCommaSeparatedList(document.getElementById('countries').value);
+    const preferredInstanceHosts = parseCommaSeparatedList(document.getElementById('preferred-instances').value);
 
     urlEl.placeholder = services.find(service => service.id === serviceId).urlPlaceholder;
 
@@ -90,6 +101,7 @@ title: jisk
       countries,
       hasHtmlExtension,
       cacheExpiry,
+      preferredInstanceHosts,
     });
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = `<p>Generated Redirect URL:</p><a href="${redirectUrl}" target="_blank">${redirectUrl}</a>`;
@@ -126,6 +138,7 @@ title: jisk
   document.getElementById('encodesUrl').addEventListener('change', updateUI);
   document.getElementById('countries').addEventListener('input', updateUI);
   document.getElementById('cache-expiry').addEventListener('input', updateUI);
+  document.getElementById('preferred-instances').addEventListener('input', updateUI);
 
   updateUI();
   setupExamples();
