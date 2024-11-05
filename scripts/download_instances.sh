@@ -8,7 +8,7 @@ SERVICES=(
     "rimgo https://codeberg.org/rimgo/rimgo/raw/branch/main/instances.json"
 )
 
-BASE_DIR="src/_data/generated"
+BASE_DIR="./src/_data/generated"
 
 while [[ "$#" -gt 0 ]]; do
     case $1 in
@@ -40,3 +40,7 @@ for service in "${SERVICES[@]}"; do
         echo "Failed to download instances.json for $service_name."
     fi
 done
+
+# Piped
+mkdir -p "$BASE_DIR/piped"
+npx tsx ./scripts/download_instances_piped.ts -o "$BASE_DIR/piped/instances.json"

@@ -10,7 +10,12 @@
     "minify": "^11.4.1",
     "npm-run-all": "^4.1.5",
     "playwright": "^1.48.2",
-    "typescript": "^5.6.3"
+    "remark-gfm": "^4.0.0",
+    "remark-parse": "^11.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0"
   },
   "scripts": {
     "tsc-watch": "npx tsc --watch",
