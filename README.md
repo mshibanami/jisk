@@ -2,8 +2,8 @@
 
 [![Deploy](https://github.com/mshibanami/jisk/actions/workflows/deploy.yml/badge.svg)](https://github.com/mshibanami/jisk/actions/workflows/deploy.yml) [![Tests](https://github.com/mshibanami/jisk/actions/workflows/tests.yaml/badge.svg)](https://github.com/mshibanami/jisk/actions/workflows/tests.yaml)
 
-- <https://mshibanami.codeberg.page/jisk/> or
-- <https://mshibanami.github.io/jisk/>
+- <https://mshibanami.github.io/jisk/> or
+- <https://mshibanami.codeberg.page/jisk/>
 
 This is a web tool that helps you jump from a specific web service to an alternative front-end, such as Redlib, Invidious, and so on. These alternative web services are provided by multiple instances, and this tool automatically selects one of the available ones.
 
@@ -21,15 +21,15 @@ Let's say you want to redirect from Reddit to Redlib.
 
 First, open the following URL and follow the instructions displayed:
 
-<https://mshibanami.codeberg.page/jisk>
+<https://mshibanami.github.io/jisk>
 
 Then you'll get a redirection URL like this:
 
 ```url
-https://mshibanami.codeberg.page/jisk/redlib.html?url=...
+https://mshibanami.github.io/jisk/redlib?url=...
 ```
 
-Then, using your browser extension, set up a redirect rule that redirects from the original Reddit URL to `https://mshibanami.codeberg.page/jisk/redlib.html?url=...`.
+Then, using your browser extension, set up a redirect rule that redirects from the original Reddit URL to `https://mshibanami.github.io/jisk/redlib?url=...`.
 
 ## How does it work?
 
@@ -57,14 +57,6 @@ You can specify the following query parameters for the redirection URL for each 
 Also, jisk provides some unique features, such as filtering by countries. So, it's not necessarily just a workaround for LibRedirect.
 
 However, LibRedirect provides a more seamless experience as it doesn't display the "Redirecting..." page. So, whether to use jisk or LibRedirect depends on your preference.
-
-### Why is this hosted on both Codeberg Pages and GitHub Pages?
-
-Because one of the main target groups for this tool is privacy enthusiasts, it is hosted on Codeberg Pages, provided by Codeberg e.V., a non-profit organization in Germany that highly respects privacy.
-
-It's also hosted on GitHub Pages to make it more accessible to a wider audience.
-
-You can also host this tool by forking this repository and using it as your own.
 
 ## Privacy Policy
 
