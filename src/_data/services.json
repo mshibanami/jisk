@@ -3,16 +3,19 @@
         {
             "id": "invidious",
             "name": "Invidious",
+            "targetServiceName": "YouTube",
             "urlPlaceholder": "https://youtube.com/..."
         },
         {
             "id": "redlib",
             "name": "Redlib",
+            "targetServiceName": "Reddit",
             "urlPlaceholder": "https://www.reddit.com/..."
         },
         {
             "id": "rimgo",
             "name": "rimgo",
+            "targetServiceName": "Imgur",
             "urlPlaceholder": "https://imgur.com/..."
         }
     ]
