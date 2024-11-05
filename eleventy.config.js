@@ -6,8 +6,10 @@ module.exports = function (eleventyConfig) {
   switch (process.env.ELEVENTY_ENV) {
     case "GITHUB":
       eleventyConfig.addGlobalData("baseUrl", "https://mshibanami.github.io/jisk/");
+      break;
     case "CODEBERG":
       eleventyConfig.addGlobalData("baseUrl", "https://mshibanami.codeberg.page/jisk/");
+      break;
   }
 
   eleventyConfig.addGlobalData("permalink", () => {
