@@ -83,8 +83,18 @@ import { writeFile } from 'fs/promises';
     for (const apiUrl in instanceDataMap) {
         const instanceData = instanceDataMap[apiUrl];
         const summaryData = summaryDataMap[apiUrl] || null;
-        // `dailyMinutesDown` is too verbose and not needed
+
+        // Remove unnecessary fields
         delete summaryData['dailyMinutesDown'];
+        delete summaryData['uptimeDay'];
+        delete summaryData['uptimeWeek'];
+        delete summaryData['uptimeMonth'];
+        delete summaryData['uptimeYear'];
+        delete summaryData['time'];
+        delete summaryData['timeDay'];
+        delete summaryData['timeWeek'];
+        delete summaryData['timeMonth'];
+        delete summaryData['timeYear'];
 
         // Initialize the merged instance data
         let url: string | null;

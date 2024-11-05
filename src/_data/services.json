@@ -7,6 +7,12 @@
             "urlPlaceholder": "https://youtube.com/..."
         },
         {
+            "id": "piped",
+            "name": "Piped",
+            "targetServiceName": "YouTube",
+            "urlPlaceholder": "https://youtube.com/..."
+        },
+        {
             "id": "redlib",
             "name": "Redlib",
             "targetServiceName": "Reddit",

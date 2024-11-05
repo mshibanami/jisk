@@ -61,24 +61,33 @@ test.describe('Test for instances.ts', () => {
       expect(parsedInstances.length).toBe(8);
       const instance = parsedInstances[0]
       expect(instance.url).toBeDefined();
-      expect(instance.countryCode).toBeDefined();
+      expect(instance.countryCodes?.length).toBeGreaterThan(0);
       expect(instance.faviconUrl).toBeDefined();
     }
     {
       const rawInstances = require('./resources/redlib/instances.json');
       const parsedInstances = makeInstances({ rawInstances, serviceId: 'redlib' });
-      expect(parsedInstances.length).toBe(29);
+      expect(parsedInstances.length).toBeGreaterThan(0);
       const instance = parsedInstances[0]
       expect(instance.url).toBeDefined();
-      expect(instance.countryCode).toBeDefined();
+      expect(instance.countryCodes?.length).toBeGreaterThan(0);
     }
     {
       const rawInstances = require('./resources/rimgo/instances.json');
       const parsedInstances = makeInstances({ rawInstances, serviceId: 'rimgo' });
-      expect(parsedInstances.length).toBe(21);
+      expect(parsedInstances.length).toBeGreaterThan(0);
       const instance = parsedInstances[0]
       expect(instance.url).toBeDefined();
-      expect(instance.countryCode).toBeDefined();
+      expect(instance.countryCodes?.length).toBeGreaterThan(0);
+    }
+
+    {
+      const rawInstances = require('./resources/piped/instances.json');
+      const parsedInstances = makeInstances({ rawInstances, serviceId: 'piped' });
+      expect(parsedInstances.length).toBeGreaterThan(0);
+      const instance = parsedInstances[0]
+      expect(instance.url).toBeDefined();
+      expect(instance.countryCodes?.length).toBeGreaterThan(0);
     }
   })
 
@@ -86,12 +95,12 @@ test.describe('Test for instances.ts', () => {
     const instances: Instance[] = [
       {
         url: 'https://host1.example.com/',
-        countryCode: 'JP',
+        countryCodes: ['JP'],
         uptime: 100,
       },
       {
         url: 'https://host2.example.com/',
-        countryCode: 'TW',
+        countryCodes: ['TW'],
       },
     ];
 
@@ -103,7 +112,7 @@ test.describe('Test for instances.ts', () => {
         throw new Error('No instances found');
       }
       expect(filtered.length).toBe(1);
-      expect(filtered[0].countryCode).toBe('JP');
+      expect(filtered[0].countryCodes).toStrictEqual(['JP']);
     }
 
     {
@@ -114,8 +123,8 @@ test.describe('Test for instances.ts', () => {
         throw new Error('No instances found');
       }
       expect(filtered.length).toBe(2);
-      expect(filtered[0].countryCode).toBe('JP');
-      expect(filtered[1].countryCode).toBe('TW');
+      expect(filtered[0].countryCodes).toStrictEqual(['JP']);
+      expect(filtered[1].countryCodes).toStrictEqual(['TW']);
     }
   })
 

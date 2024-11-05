@@ -1,0 +1,1145 @@
+[
+  {
+    "instance": {
+      "Instance Name": "kavin.rocks (Official)",
+      "Instance API URL": "https://pipedapi.kavin.rocks",
+      "Instance Location(s)": "🇺🇸, 🇮🇳, 🇳🇱, 🇨🇦, 🇬🇧, 🇫🇷",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "kavin.rocks (Official)",
+      "url": "https://pipedapi.kavin.rocks/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.kavin.rocks.ico",
+      "slug": "kavin-rocks-official",
+      "status": "up",
+      "uptime": "99.62%"
+    },
+    "url": "https://piped.video",
+    "countries": [
+      "US",
+      "IN",
+      "NL",
+      "CA",
+      "GB",
+      "FR"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "tokhmi.xyz",
+      "Instance API URL": "https://pipedapi.tokhmi.xyz",
+      "Instance Location(s)": "🇺🇸",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "tokhmi.xyz",
+      "url": "https://pipedapi.tokhmi.xyz/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.tokhmi.xyz.ico",
+      "slug": "tokhmi-xyz",
+      "status": "down",
+      "uptime": "28.94%"
+    },
+    "url": null,
+    "countries": [
+      "US"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "moomoo.me",
+      "Instance API URL": "https://pipedapi.moomoo.me",
+      "Instance Location(s)": "🇬🇧",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "moomoo.me",
+      "url": "https://pipedapi.moomoo.me/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.moomoo.me.ico",
+      "slug": "moomoo-me",
+      "status": "down",
+      "uptime": "0.00%"
+    },
+    "url": null,
+    "countries": [
+      "GB"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "syncpundit.io",
+      "Instance API URL": "https://pipedapi.syncpundit.io",
+      "Instance Location(s)": "🇺🇸, 🇮🇳, 🇬🇧, 🇯🇵",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "syncpundit.io",
+      "url": "https://pipedapi.syncpundit.io/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.syncpundit.io.ico",
+      "slug": "syncpundit-io",
+      "status": "down",
+      "uptime": "0.00%"
+    },
+    "url": null,
+    "countries": [
+      "US",
+      "IN",
+      "GB",
+      "JP"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "mha.fi",
+      "Instance API URL": "https://api-piped.mha.fi",
+      "Instance Location(s)": "🇫🇮",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "mha.fi",
+      "url": "https://api-piped.mha.fi/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/api-piped.mha.fi.ico",
+      "slug": "mha-fi",
+      "status": "down",
+      "uptime": "59.64%"
+    },
+    "url": null,
+    "countries": [
+      "FI"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "garudalinux.org",
+      "Instance API URL": "https://piped-api.garudalinux.org",
+      "Instance Location(s)": "🇫🇮",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "garudalinux.org",
+      "url": "https://piped-api.garudalinux.org/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/piped-api.garudalinux.org.ico",
+      "slug": "garudalinux-org",
+      "status": "down",
+      "uptime": "69.56%"
+    },
+    "url": null,
+    "countries": [
+      "FI"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "rivo.lol",
+      "Instance API URL": "https://pipedapi.rivo.lol",
+      "Instance Location(s)": "🇨🇱",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "rivo.lol",
+      "url": "https://pipedapi.rivo.lol/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.rivo.lol.ico",
+      "slug": "rivo-lol",
+      "status": "down",
+      "uptime": "54.87%"
+    },
+    "url": null,
+    "countries": [
+      "CL"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "leptons.xyz",
+      "Instance API URL": "https://pipedapi.leptons.xyz",
+      "Instance Location(s)": "🇦🇹",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "leptons.xyz",
+      "url": "https://pipedapi.leptons.xyz/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.leptons.xyz.ico",
+      "slug": "leptons-xyz",
+      "status": "down",
+      "uptime": "33.37%"
+    },
+    "url": "https://watch.leptons.xyz",
+    "countries": [
+      "AT"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "lunar.icu",
+      "Instance API URL": "https://piped-api.lunar.icu",
+      "Instance Location(s)": "🇩🇪",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "lunar.icu",
+      "url": "https://piped-api.lunar.icu/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/piped-api.lunar.icu.ico",
+      "slug": "lunar-icu",
+      "status": "up",
+      "uptime": "91.95%"
+    },
+    "url": "https://piped.lunar.icu",
+    "countries": [
+      "DE"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "dc09.ru",
+      "Instance API URL": "https://ytapi.dc09.ru",
+      "Instance Location(s)": "🇷🇺",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "dc09.ru",
+      "url": "https://ytapi.dc09.ru/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/ytapi.dc09.ru.ico",
+      "slug": "dc09-ru",
+      "status": "down",
+      "uptime": "58.88%"
+    },
+    "url": null,
+    "countries": [
+      "RU"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "colinslegacy.com",
+      "Instance API URL": "https://pipedapi.colinslegacy.com",
+      "Instance Location(s)": "🇺🇸",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "colinslegacy.com",
+      "url": "https://pipedapi.colinslegacy.com/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.colinslegacy.com.ico",
+      "slug": "colinslegacy-com",
+      "status": "down",
+      "uptime": "7.71%"
+    },
+    "url": null,
+    "countries": [
+      "US"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "vyper.me",
+      "Instance API URL": "https://yapi.vyper.me",
+      "Instance Location(s)": "🇨🇱",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "vyper.me",
+      "url": "https://yapi.vyper.me/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/yapi.vyper.me.ico",
+      "slug": "vyper-me",
+      "status": "up",
+      "uptime": "87.08%"
+    },
+    "url": "http://ww25.yapi.vyper.me/?subid1=20241105-2032-5431-96ba-c559f3734fdb",
+    "countries": [
+      "CL"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "looleh.xyz",
+      "Instance API URL": "https://api.looleh.xyz",
+      "Instance Location(s)": "🇳🇱",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "looleh.xyz",
+      "url": "https://api.looleh.xyz/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/api.looleh.xyz.ico",
+      "slug": "looleh-xyz",
+      "status": "up",
+      "uptime": "20.63%"
+    },
+    "url": null,
+    "countries": [
+      "NL"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "cfe.re",
+      "Instance API URL": "https://piped-api.cfe.re",
+      "Instance Location(s)": "🇵🇱",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "cfe.re",
+      "url": "https://piped-api.cfe.re/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/piped-api.cfe.re.ico",
+      "slug": "cfe-re",
+      "status": "down",
+      "uptime": "0.27%"
+    },
+    "url": null,
+    "countries": [
+      "PL"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "r4fo.com",
+      "Instance API URL": "https://pipedapi.r4fo.com",
+      "Instance Location(s)": "🇩🇪",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "r4fo.com",
+      "url": "https://pipedapi.r4fo.com/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.r4fo.com.ico",
+      "slug": "r4fo-com",
+      "status": "down",
+      "uptime": "0.43%"
+    },
+    "url": "https://piped.r4fo.com",
+    "countries": [
+      "DE"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "nosebs.ru",
+      "Instance API URL": "https://pipedapi.nosebs.ru",
+      "Instance Location(s)": "🇫🇮",
+      "CDN": "Yes",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "nosebs.ru",
+      "url": "https://pipedapi.nosebs.ru/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.nosebs.ru.ico",
+      "slug": "nosebs-ru",
+      "status": "up",
+      "uptime": "39.96%"
+    },
+    "url": "https://piped.nosebs.ru",
+    "countries": [
+      "FI"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "kavin.rocks libre (Official)",
+      "Instance API URL": "https://pipedapi-libre.kavin.rocks",
+      "Instance Location(s)": "🇳🇱",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "kavin.rocks libre (Official)",
+      "url": "https://pipedapi-libre.kavin.rocks/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi-libre.kavin.rocks.ico",
+      "slug": "kavin-rocks-libre-official",
+      "status": "up",
+      "uptime": "88.27%"
+    },
+    "url": "https://piped.video",
+    "countries": [
+      "NL"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "mint.lgbt",
+      "Instance API URL": "https://pa.mint.lgbt",
+      "Instance Location(s)": "🇨🇦",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "mint.lgbt",
+      "url": "https://pa.mint.lgbt/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pa.mint.lgbt.ico",
+      "slug": "mint-lgbt",
+      "status": "down",
+      "uptime": "10.63%"
+    },
+    "url": null,
+    "countries": [
+      "CA"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "il.ax",
+      "Instance API URL": "https://pa.il.ax",
+      "Instance Location(s)": "🇺🇸",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "il.ax",
+      "url": "https://pa.il.ax/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pa.il.ax.ico",
+      "slug": "il-ax",
+      "status": "up",
+      "uptime": "99.31%"
+    },
+    "url": null,
+    "countries": [
+      "US"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "privacy.com.de",
+      "Instance API URL": "https://piped-api.privacy.com.de",
+      "Instance Location(s)": "🇩🇪",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "privacy.com.de",
+      "url": "https://piped-api.privacy.com.de/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/piped-api.privacy.com.de.ico",
+      "slug": "privacy-com-de",
+      "status": "down",
+      "uptime": "43.69%"
+    },
+    "url": null,
+    "countries": [
+      "DE"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "projectsegfau.lt",
+      "Instance API URL": "https://api.piped.projectsegfau.lt",
+      "Instance Location(s)": "🇫🇷",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "projectsegfau.lt",
+      "url": "https://api.piped.projectsegfau.lt/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/api.piped.projectsegfau.lt.ico",
+      "slug": "projectsegfau-lt",
+      "status": "down",
+      "uptime": "80.10%"
+    },
+    "url": null,
+    "countries": [
+      "FR"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "projectsegfau.lt in",
+      "Instance API URL": "https://pipedapi.in.projectsegfau.lt",
+      "Instance Location(s)": "🇮🇳",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "projectsegfau.lt in",
+      "url": "https://pipedapi.in.projectsegfau.lt/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.in.projectsegfau.lt.ico",
+      "slug": "projectsegfau-lt-in",
+      "status": "up",
+      "uptime": "86.34%"
+    },
+    "url": "https://piped.in.projectsegfau.lt",
+    "countries": [
+      "IN"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "projectsegfau.lt us",
+      "Instance API URL": "https://pipedapi.us.projectsegfau.lt",
+      "Instance Location(s)": "🇺🇸",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "projectsegfau.lt us",
+      "url": "https://pipedapi.us.projectsegfau.lt/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.us.projectsegfau.lt.ico",
+      "slug": "projectsegfau-lt-us",
+      "status": "down",
+      "uptime": "70.49%"
+    },
+    "url": null,
+    "countries": [
+      "US"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "whatever.social",
+      "Instance API URL": "https://watchapi.whatever.social",
+      "Instance Location(s)": "🇺🇸",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "whatever.social",
+      "url": "https://watchapi.whatever.social/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/watchapi.whatever.social.ico",
+      "slug": "whatever-social",
+      "status": "down",
+      "uptime": "47.26%"
+    },
+    "url": null,
+    "countries": [
+      "US"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "privacydev.net",
+      "Instance API URL": "https://api.piped.privacydev.net",
+      "Instance Location(s)": "🇫🇷",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "privacydev.net",
+      "url": "https://api.piped.privacydev.net/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/api.piped.privacydev.net.ico",
+      "slug": "privacydev-net",
+      "status": "up",
+      "uptime": "99.75%"
+    },
+    "url": "https://piped.privacydev.net",
+    "countries": [
+      "FR"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "palveluntarjoaja.eu",
+      "Instance API URL": "https://pipedapi.palveluntarjoaja.eu",
+      "Instance Location(s)": "🇫🇷",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "palveluntarjoaja.eu",
+      "url": "https://pipedapi.palveluntarjoaja.eu/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.palveluntarjoaja.eu.ico",
+      "slug": "palveluntarjoaja-eu",
+      "status": "up",
+      "uptime": "61.11%"
+    },
+    "url": null,
+    "countries": [
+      "FR"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "smnz.de",
+      "Instance API URL": "https://pipedapi.smnz.de",
+      "Instance Location(s)": "🇩🇪",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "smnz.de",
+      "url": "https://pipedapi.smnz.de/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.smnz.de.ico",
+      "slug": "smnz-de",
+      "status": "up",
+      "uptime": "89.67%"
+    },
+    "url": "https://piped.smnz.de",
+    "countries": [
+      "DE"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "adminforge.de",
+      "Instance API URL": "https://pipedapi.adminforge.de",
+      "Instance Location(s)": "🇩🇪",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "adminforge.de",
+      "url": "https://pipedapi.adminforge.de/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.adminforge.de.ico",
+      "slug": "adminforge-de",
+      "status": "up",
+      "uptime": "92.57%"
+    },
+    "url": "https://piped.adminforge.de",
+    "countries": [
+      "DE"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "qdi.fi",
+      "Instance API URL": "https://pipedapi.qdi.fi",
+      "Instance Location(s)": "🇺🇸",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "qdi.fi",
+      "url": "https://pipedapi.qdi.fi/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.qdi.fi.ico",
+      "slug": "qdi-fi",
+      "status": "down",
+      "uptime": "38.07%"
+    },
+    "url": null,
+    "countries": [
+      "US"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "hostux.net",
+      "Instance API URL": "https://piped-api.hostux.net",
+      "Instance Location(s)": "🇫🇷, 🇱🇺",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "hostux.net",
+      "url": "https://piped-api.hostux.net/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/piped-api.hostux.net.ico",
+      "slug": "hostux-net",
+      "status": "down",
+      "uptime": "50.33%"
+    },
+    "url": null,
+    "countries": [
+      "FR",
+      "LU"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "vern.cc",
+      "Instance API URL": "https://pdapi.vern.cc",
+      "Instance Location(s)": "🇺🇸",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "vern.cc",
+      "url": "https://pdapi.vern.cc/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pdapi.vern.cc.ico",
+      "slug": "vern-cc",
+      "status": "up",
+      "uptime": "77.85%"
+    },
+    "url": null,
+    "countries": [
+      "US"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "pfcd.me",
+      "Instance API URL": "https://pipedapi.pfcd.me",
+      "Instance Location(s)": "🇩🇪",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "pfcd.me",
+      "url": "https://pipedapi.pfcd.me/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.pfcd.me.ico",
+      "slug": "pfcd-me",
+      "status": "down",
+      "uptime": "11.72%"
+    },
+    "url": null,
+    "countries": [
+      "DE"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "frontendfriendly.xyz",
+      "Instance API URL": "https://pipedapi.frontendfriendly.xyz",
+      "Instance Location(s)": "🇺🇸",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "frontendfriendly.xyz",
+      "url": "https://pipedapi.frontendfriendly.xyz/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.frontendfriendly.xyz.ico",
+      "slug": "frontendfriendly-xyz",
+      "status": "down",
+      "uptime": "44.07%"
+    },
+    "url": null,
+    "countries": [
+      "US"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "piped.yt",
+      "Instance API URL": "https://api.piped.yt",
+      "Instance Location(s)": "🇩🇪",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "piped.yt",
+      "url": "https://api.piped.yt/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/api.piped.yt.ico",
+      "slug": "piped-yt",
+      "status": "up",
+      "uptime": "89.99%"
+    },
+    "url": "https://piped.yt",
+    "countries": [
+      "DE"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "astartes.nl",
+      "Instance API URL": "https://pipedapi.astartes.nl",
+      "Instance Location(s)": "🇳🇱",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "astartes.nl",
+      "url": "https://pipedapi.astartes.nl/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.astartes.nl.ico",
+      "slug": "astartes-nl",
+      "status": "down",
+      "uptime": "80.91%"
+    },
+    "url": null,
+    "countries": [
+      "NL"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "osphost.fi",
+      "Instance API URL": "https://pipedapi.osphost.fi",
+      "Instance Location(s)": "🇫🇮",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "osphost.fi",
+      "url": "https://pipedapi.osphost.fi/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.osphost.fi.ico",
+      "slug": "osphost-fi",
+      "status": "down",
+      "uptime": "27.32%"
+    },
+    "url": null,
+    "countries": [
+      "FI"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "simpleprivacy.fr",
+      "Instance API URL": "https://pipedapi.simpleprivacy.fr",
+      "Instance Location(s)": "🇫🇷",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "simpleprivacy.fr",
+      "url": "https://pipedapi.simpleprivacy.fr/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.simpleprivacy.fr.ico",
+      "slug": "simpleprivacy-fr",
+      "status": "down",
+      "uptime": "34.27%"
+    },
+    "url": "https://simpleprivacy.fr/",
+    "countries": [
+      "FR"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "drgns.space",
+      "Instance API URL": "https://pipedapi.drgns.space",
+      "Instance Location(s)": "🇺🇸",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "drgns.space",
+      "url": "https://pipedapi.drgns.space/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.drgns.space.ico",
+      "slug": "drgns-space",
+      "status": "up",
+      "uptime": "85.08%"
+    },
+    "url": "https://piped.drgns.space",
+    "countries": [
+      "US"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "ggtyler.dev",
+      "Instance API URL": "https://piapi.ggtyler.dev",
+      "Instance Location(s)": "🇺🇸",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "ggtyler.dev",
+      "url": "https://piapi.ggtyler.dev/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/piapi.ggtyler.dev.ico",
+      "slug": "ggtyler-dev",
+      "status": "up",
+      "uptime": "75.62%"
+    },
+    "url": "https://nyc1.piapi.ggtyler.dev/",
+    "countries": [
+      "US"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "pluto.lat",
+      "Instance API URL": "https://api.watch.pluto.lat",
+      "Instance Location(s)": "🇫🇮",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "pluto.lat",
+      "url": "https://api.watch.pluto.lat/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/api.watch.pluto.lat.ico",
+      "slug": "pluto-lat",
+      "status": "down",
+      "uptime": "12.62%"
+    },
+    "url": null,
+    "countries": [
+      "FI"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "seitan-ayoub.lol",
+      "Instance API URL": "https://piped-backend.seitan-ayoub.lol",
+      "Instance Location(s)": "🇩🇪",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "seitan-ayoub.lol",
+      "url": "https://piped-backend.seitan-ayoub.lol/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/piped-backend.seitan-ayoub.lol.ico",
+      "slug": "seitan-ayoub-lol",
+      "status": "down",
+      "uptime": "39.42%"
+    },
+    "url": null,
+    "countries": [
+      "DE"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "owo.si",
+      "Instance API URL": "https://pipedapi.owo.si",
+      "Instance Location(s)": "🇩🇪",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "owo.si",
+      "url": "https://pipedapi.owo.si/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.owo.si.ico",
+      "slug": "owo-si",
+      "status": "down",
+      "uptime": "19.70%"
+    },
+    "url": null,
+    "countries": [
+      "DE"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "minionflo.net",
+      "Instance API URL": "https://api.piped.minionflo.net",
+      "Instance Location(s)": "🇩🇪",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "minionflo.net",
+      "url": "https://api.piped.minionflo.net/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/api.piped.minionflo.net.ico",
+      "slug": "minionflo-net",
+      "status": "up",
+      "uptime": "63.50%"
+    },
+    "url": null,
+    "countries": [
+      "DE"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "nezumi.party",
+      "Instance API URL": "https://pipedapi.nezumi.party",
+      "Instance Location(s)": "🇮🇹",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "nezumi.party",
+      "url": "https://pipedapi.nezumi.party/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.nezumi.party.ico",
+      "slug": "nezumi-party",
+      "status": "down",
+      "uptime": "1.48%"
+    },
+    "url": null,
+    "countries": [
+      "IT"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "ducks.party",
+      "Instance API URL": "https://pipedapi.ducks.party",
+      "Instance Location(s)": "🇳🇱",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "ducks.party",
+      "url": "https://pipedapi.ducks.party/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.ducks.party.ico",
+      "slug": "ducks-party",
+      "status": "up",
+      "uptime": "94.97%"
+    },
+    "url": "https://piped.ducks.party",
+    "countries": [
+      "NL"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "ngn.tf",
+      "Instance API URL": "https://pipedapi.ngn.tf",
+      "Instance Location(s)": "🇹🇷",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "ngn.tf",
+      "url": "https://pipedapi.ngn.tf/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.ngn.tf.ico",
+      "slug": "ngn-tf",
+      "status": "up",
+      "uptime": "89.12%"
+    },
+    "url": "https://piped.ngn.tf",
+    "countries": [
+      "TR"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "coldforge.xyz",
+      "Instance API URL": "https://pipedapi.coldforge.xyz",
+      "Instance Location(s)": "🇺🇸",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "coldforge.xyz",
+      "url": "https://pipedapi.coldforge.xyz/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.coldforge.xyz.ico",
+      "slug": "coldforge-xyz",
+      "status": "down",
+      "uptime": "41.03%"
+    },
+    "url": null,
+    "countries": [
+      "US"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "codespace.cz",
+      "Instance API URL": "https://piped-api.codespace.cz",
+      "Instance Location(s)": "🇨🇿",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "codespace.cz",
+      "url": "https://piped-api.codespace.cz/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/piped-api.codespace.cz.ico",
+      "slug": "codespace-cz",
+      "status": "up",
+      "uptime": "85.04%"
+    },
+    "url": "https://piped.cdsp.cz",
+    "countries": [
+      "CZ"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "reallyaweso.me",
+      "Instance API URL": "https://pipedapi.reallyaweso.me",
+      "Instance Location(s)": "🇩🇪",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "reallyaweso.me",
+      "url": "https://pipedapi.reallyaweso.me/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.reallyaweso.me.ico",
+      "slug": "reallyaweso-me",
+      "status": "down",
+      "uptime": "84.76%"
+    },
+    "url": null,
+    "countries": [
+      "DE"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "phoenixthrush.com",
+      "Instance API URL": "https://pipedapi.phoenixthrush.com",
+      "Instance Location(s)": "🇩🇪",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "phoenixthrush.com",
+      "url": "https://pipedapi.phoenixthrush.com/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.phoenixthrush.com.ico",
+      "slug": "phoenixthrush-com",
+      "status": "down",
+      "uptime": "80.30%"
+    },
+    "url": null,
+    "countries": [
+      "DE"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "private.coffee",
+      "Instance API URL": "https://api.piped.private.coffee",
+      "Instance Location(s)": "🇦🇹",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "private.coffee",
+      "url": "https://api.piped.private.coffee/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/api.piped.private.coffee.ico",
+      "slug": "private-coffee",
+      "status": "up",
+      "uptime": "91.45%"
+    },
+    "url": "https://piped.private.coffee",
+    "countries": [
+      "AT"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "ehwurscht.at",
+      "Instance API URL": "https://schaunapi.ehwurscht.at",
+      "Instance Location(s)": "🇦🇹",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "ehwurscht.at",
+      "url": "https://schaunapi.ehwurscht.at/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/schaunapi.ehwurscht.at.ico",
+      "slug": "ehwurscht-at",
+      "status": "down",
+      "uptime": "54.70%"
+    },
+    "url": null,
+    "countries": [
+      "AT"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "darkness.services",
+      "Instance API URL": "https://pipedapi.darkness.services",
+      "Instance Location(s)": "🇺🇸",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "darkness.services",
+      "url": "https://pipedapi.darkness.services/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.darkness.services.ico",
+      "slug": "darkness-services",
+      "status": "up",
+      "uptime": "80.50%"
+    },
+    "url": "https://piped.darkness.services",
+    "countries": [
+      "US"
+    ]
+  },
+  {
+    "instance": {
+      "Instance Name": "andreafortuna.org",
+      "Instance API URL": "https://pipedapi.andreafortuna.org",
+      "Instance Location(s)": "🇩🇪",
+      "CDN": "No",
+      "Registered Users": ""
+    },
+    "health": {
+      "name": "andreafortuna.org",
+      "url": "https://pipedapi.andreafortuna.org/healthcheck",
+      "icon": "https://icons.duckduckgo.com/ip3/pipedapi.andreafortuna.org.ico",
+      "slug": "andreafortuna-org",
+      "status": "down",
+      "uptime": "16.04%"
+    },
+    "url": null,
+    "countries": [
+      "DE"
+    ]
+  }
+]

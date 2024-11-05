@@ -2,7 +2,7 @@ export type Instance = {
     url: string;
 
     // e.g. JP, TW, KO, CN
-    countryCode?: string;
+    countryCodes?: string[];
 
     // Uptime percentage (0-100)
     uptime?: number;
@@ -27,7 +27,7 @@ const ui = new Proxy(_ui, {
         return true;
     }
 });
-export type serviceId = 'invidious' | 'redlib' | 'rimgo';
+export type serviceId = 'invidious' | 'piped' | 'redlib' | 'rimgo';
 export type Status = 'idle' | 'loading' | 'success' | 'error';
 
 export interface ServiceConfig {
@@ -194,11 +194,17 @@ export async function filterSelectableInstances(config: ServiceConfig, instances
 }
 
 function isSelectableInstance(instance: Instance, config: ServiceConfig): boolean {
-    const upperCasedCountryCodes = config.countryCodes?.map(code => code.toUpperCase()) ?? [];
-    if (upperCasedCountryCodes.length > 0) {
-        return instance.countryCode
-            ? upperCasedCountryCodes.includes(instance.countryCode.toUpperCase())
-            : false
+    const targetCountryCodes = config.countryCodes?.map(code => code.toUpperCase()) ?? [];
+    if (targetCountryCodes.length > 0) {
+        if (instance.countryCodes) {
+            // Filter by country if the instance has multiple countries and all are allowed.
+            return instance.countryCodes
+                .map(code => code.toUpperCase())
+                .filter(code => targetCountryCodes.includes(code))
+                .length > 0;
+        } else {
+            return false
+        }
     }
     return true;
 }
@@ -231,6 +237,7 @@ function isValidSourceUrl({ sourceUrl, serviceId }: { sourceUrl: string, service
     const hostname = new URL(sourceUrl).hostname;
     switch (serviceId) {
         case 'invidious':
+        case 'piped':
             return hostname.endsWith('youtube.com');
         case 'redlib':
             return hostname.endsWith('reddit.com');
@@ -267,16 +274,24 @@ export function makeInstances({ rawInstances, serviceId }: { rawInstances: any, 
             return (rawInstances as any[][]).map(([_, info]) => {
                 return {
                     url: info.uri,
-                    countryCode: info.region,
+                    countryCodes: [info.region],
                     faviconUrl: info.monitor?.favicon_url
-                }
+                } satisfies Instance
             })
+        case 'piped':
+            return (rawInstances as any[])
+                .map(instance => {
+                    return {
+                        url: instance.url,
+                        countryCodes: instance.countries
+                    }
+                })
         case 'redlib':
             return (rawInstances.instances as any[])
                 .map(instance => {
                     return {
                         url: instance.url,
-                        countryCode: instance.country
+                        countryCodes: [instance.country]
                     }
                 })
         case 'rimgo':
@@ -284,7 +299,7 @@ export function makeInstances({ rawInstances, serviceId }: { rawInstances: any, 
                 .map(instance => {
                     return {
                         url: instance.url,
-                        countryCode: instance.countries[0]
+                        countryCodes: instance.countries
                     }
                 })
         default:
@@ -353,10 +368,11 @@ export async function startSearching(customConfig: ServiceConfig): Promise<void>
             window.location.replace(redirectUrl);
         }
     } catch (error) {
+        const prefix = 'Failed to start searching:';
         if (error instanceof Error) {
-            setStatus('error', error.message);
+            setStatus('error', prefix + error.message);
         } else {
-            setStatus('error', 'An unknown error occurred.');
+            setStatus('error', prefix + 'An unknown error occurred.');
         }
     }
 }
