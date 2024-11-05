@@ -28,7 +28,7 @@ export function makeRedirectionUrl({
             components.search = `url=${sourceUrl}`
         }
     }
-    if (cacheExpiry && cacheExpiry > 0) {
+    if (cacheExpiry && cacheExpiry >= 0) {
         components.searchParams.set('cache_expiry', cacheExpiry.toString())
     }
     if (countries && countries.length > 0) {
