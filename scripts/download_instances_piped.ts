@@ -97,14 +97,18 @@ import { writeFile } from 'fs/promises';
         delete summaryData['timeYear'];
 
         // Initialize the merged instance data
-        let url: string | null;
+        let url: string;
         // Get the redirect URL by making a request to 'Instance API URL'
         try {
             const redirectUrl = await fetchRedirectUrl(instanceData['Instance API URL']);
+            if (!redirectUrl) {
+                console.warn(`No redirect URL found for ${instanceData['Instance API URL']}`);
+                continue
+            }
             url = redirectUrl;
         } catch (error) {
             console.warn(`Failed fetching redirect URL for ${instanceData['Instance API URL']}:`, (error as Error).message);
-            url = null;
+            continue
         }
         mergedData.push({
             instance: instanceData,
@@ -171,7 +175,8 @@ import { writeFile } from 'fs/promises';
         try {
             const response = await fetch(url, {
                 method: 'GET',
-                redirect: 'manual'
+                redirect: 'manual',
+                signal: AbortSignal.timeout(3000)
             });
 
             if (response.status === 301 || response.status === 302) {
