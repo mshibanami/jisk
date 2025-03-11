@@ -1,4 +1,4 @@
-import { serviceId } from "./instances";
+import { ServiceId } from "./instances";
 
 export function makeRedirectionUrl({
     baseUrl,
@@ -12,7 +12,7 @@ export function makeRedirectionUrl({
 }: {
     baseUrl: string,
     sourceUrl: string,
-    serviceId: serviceId,
+    serviceId: ServiceId,
     encodesSourceUrl?: boolean,
     cacheExpiry?: number,
     hasHtmlExtension?: boolean,

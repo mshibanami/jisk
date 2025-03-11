@@ -65,6 +65,15 @@ test.describe('Test for instances.ts', () => {
       expect(instance.faviconUrl).toBeDefined();
     }
     {
+      const rawInstances = require('./resources/nitter/instances.json');
+      const parsedInstances = makeInstances({ rawInstances, serviceId: 'nitter' });
+      expect(parsedInstances.length).toBeGreaterThan(0);
+      const instance = parsedInstances[0]
+      expect(instance.url).toBeDefined();
+      expect(instance.countryCodes?.length).toBeGreaterThan(0);
+      expect(instance.countryCodes?.[0]).toBe('US');
+    }
+    {
       const rawInstances = require('./resources/redlib/instances.json');
       const parsedInstances = makeInstances({ rawInstances, serviceId: 'redlib' });
       expect(parsedInstances.length).toBeGreaterThan(0);
@@ -88,6 +97,7 @@ test.describe('Test for instances.ts', () => {
       const instance = parsedInstances[0]
       expect(instance.url).toBeDefined();
       expect(instance.countryCodes?.length).toBeGreaterThan(0);
+      expect(instance.score).toBe(99.62);
     }
   })
 
@@ -96,7 +106,7 @@ test.describe('Test for instances.ts', () => {
       {
         url: 'https://host1.example.com/',
         countryCodes: ['JP'],
-        uptime: 100,
+        score: 100,
       },
       {
         url: 'https://host2.example.com/',

@@ -1,11 +1,13 @@
+import { convertRegionEmojiToCode } from "./regionEmojiToCode";
+
 export type Instance = {
     url: string;
 
     // e.g. JP, TW, KO, CN
     countryCodes?: string[];
 
-    // Uptime percentage (0-100)
-    uptime?: number;
+    // Number of score (0-100). The higher the better.
+    score?: number;
 
     faviconUrl?: string;
 };
@@ -27,12 +29,13 @@ const ui = new Proxy(_ui, {
         return true;
     }
 });
-export type serviceId = 'invidious' | 'piped' | 'redlib' | 'rimgo';
+
+export type ServiceId = 'invidious' | 'nitter' | 'piped' | 'redlib' | 'rimgo';
 export type Status = 'idle' | 'loading' | 'success' | 'error';
 
 export interface ServiceConfig {
     instances: Instance[];
-    serviceId: serviceId;
+    serviceId: ServiceId;
     customCacheKey: string;
     cacheExpiry: number;
     statusTimeout: number;
@@ -233,12 +236,14 @@ export function updateUI() {
     }
 }
 
-function isValidSourceUrl({ sourceUrl, serviceId }: { sourceUrl: string, serviceId: serviceId }): boolean {
+function isValidSourceUrl({ sourceUrl, serviceId }: { sourceUrl: string, serviceId: ServiceId }): boolean {
     const hostname = new URL(sourceUrl).hostname;
     switch (serviceId) {
         case 'invidious':
         case 'piped':
             return hostname.endsWith('youtube.com');
+        case 'nitter':
+            return hostname.endsWith('twitter.com') || hostname.endsWith('x.com');
         case 'redlib':
             return hostname.endsWith('reddit.com');
         case 'rimgo':
@@ -256,7 +261,7 @@ export function makeDestinationUrl({
 }: {
     instanceBaseUrl: string;
     sourceUrl: string;
-    serviceId: serviceId;
+    serviceId: ServiceId;
 }): string | null {
     if (!isValidSourceUrl({ sourceUrl, serviceId })) {
         throw new Error(`${sourceUrl} is not a valid URL for ${serviceId}.`);
@@ -268,23 +273,35 @@ export function makeDestinationUrl({
     return url.toString();
 }
 
-export function makeInstances({ rawInstances, serviceId }: { rawInstances: any, serviceId: serviceId }): Instance[] {
+export function makeInstances({ rawInstances, serviceId }: { rawInstances: any, serviceId: ServiceId }): Instance[] {
     switch (serviceId) {
         case 'invidious':
             return (rawInstances as any[][]).map(([_, info]) => {
                 return {
                     url: info.uri,
                     countryCodes: [info.region],
-                    faviconUrl: info.monitor?.favicon_url
+                    faviconUrl: info.monitor?.favicon_url,
+                    score: info.monitor?.uptime,
+                } satisfies Instance
+            })
+        case 'nitter':
+            return (rawInstances.hosts as any[]).map(instance => {
+                return {
+                    url: instance.url,
+                    countryCodes: [convertRegionEmojiToCode(instance.country)],
+                    score: instance.points
                 } satisfies Instance
             })
         case 'piped':
             return (rawInstances as any[])
                 .map(instance => {
+                    const uptime = instance.health?.uptime
+
                     return {
                         url: instance.url,
-                        countryCodes: instance.countries
-                    }
+                        countryCodes: instance.countries,
+                        score: uptime ? parseFloat(uptime) : undefined
+                    } satisfies Instance
                 })
         case 'redlib':
             return (rawInstances.instances as any[])
@@ -292,7 +309,7 @@ export function makeInstances({ rawInstances, serviceId }: { rawInstances: any, 
                     return {
                         url: instance.url,
                         countryCodes: [instance.country]
-                    }
+                    } satisfies Instance
                 })
         case 'rimgo':
             return (rawInstances as any[])
@@ -300,7 +317,7 @@ export function makeInstances({ rawInstances, serviceId }: { rawInstances: any, 
                     return {
                         url: instance.url,
                         countryCodes: instance.countries
-                    }
+                    } satisfies Instance
                 })
         default:
             throw new Error('Invalid service name')

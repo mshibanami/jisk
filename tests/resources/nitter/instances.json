@@ -1,0 +1,874 @@
+{
+    "hosts": [
+        {
+            "url": "https://nitter.space",
+            "domain": "nitter.space",
+            "points": 79,
+            "rss": false,
+            "recent_pings": [
+                1239,
+                1223,
+                1351,
+                1207,
+                1228,
+                1195,
+                1145,
+                1031,
+                969,
+                1311,
+                1331,
+                1332
+            ],
+            "ping_max": 1351,
+            "ping_min": 969,
+            "ping_avg": 1213,
+            "version": "2025.02.26-41fa47b",
+            "version_url": "https://github.com/zedeus/nitter/commit/41fa47b",
+            "healthy": true,
+            "last_healthy": "2025-03-11T05:26:16Z",
+            "is_upstream": true,
+            "is_latest_version": true,
+            "is_bad_host": false,
+            "country": "🇺🇸",
+            "recent_checks": [
+                [
+                    "2025.03.11 00:08",
+                    true
+                ],
+                [
+                    "2025.03.11 00:24",
+                    true
+                ],
+                [
+                    "2025.03.11 00:39",
+                    true
+                ],
+                [
+                    "2025.03.11 00:54",
+                    true
+                ],
+                [
+                    "2025.03.11 01:09",
+                    true
+                ],
+                [
+                    "2025.03.11 01:24",
+                    true
+                ],
+                [
+                    "2025.03.11 01:39",
+                    true
+                ],
+                [
+                    "2025.03.11 01:54",
+                    true
+                ],
+                [
+                    "2025.03.11 02:09",
+                    true
+                ],
+                [
+                    "2025.03.11 02:25",
+                    true
+                ],
+                [
+                    "2025.03.11 02:40",
+                    true
+                ],
+                [
+                    "2025.03.11 02:55",
+                    true
+                ],
+                [
+                    "2025.03.11 03:10",
+                    true
+                ],
+                [
+                    "2025.03.11 03:25",
+                    true
+                ],
+                [
+                    "2025.03.11 03:40",
+                    true
+                ],
+                [
+                    "2025.03.11 03:55",
+                    true
+                ],
+                [
+                    "2025.03.11 04:10",
+                    true
+                ],
+                [
+                    "2025.03.11 04:25",
+                    true
+                ],
+                [
+                    "2025.03.11 04:40",
+                    true
+                ],
+                [
+                    "2025.03.11 04:56",
+                    true
+                ],
+                [
+                    "2025.03.11 05:11",
+                    true
+                ],
+                [
+                    "2025.03.11 05:26",
+                    true
+                ]
+            ],
+            "healthy_percentage_overall": 97,
+            "connectivity": "All",
+            "__show_last_seen": false
+        },
+        {
+            "url": "https://lightbrd.com",
+            "domain": "lightbrd.com",
+            "points": 77,
+            "rss": false,
+            "recent_pings": [
+                1162,
+                1045,
+                1035,
+                1084,
+                1098,
+                1067,
+                975,
+                925,
+                872,
+                1244,
+                1401,
+                1213
+            ],
+            "ping_max": 1401,
+            "ping_min": 872,
+            "ping_avg": 1093,
+            "version": "2025.02.26-41fa47b",
+            "version_url": "https://github.com/zedeus/nitter/commit/41fa47b",
+            "healthy": true,
+            "last_healthy": "2025-03-11T05:26:16Z",
+            "is_upstream": true,
+            "is_latest_version": true,
+            "is_bad_host": false,
+            "country": "🇹🇷",
+            "recent_checks": [
+                [
+                    "2025.03.11 00:08",
+                    true
+                ],
+                [
+                    "2025.03.11 00:24",
+                    true
+                ],
+                [
+                    "2025.03.11 00:39",
+                    true
+                ],
+                [
+                    "2025.03.11 00:54",
+                    true
+                ],
+                [
+                    "2025.03.11 01:09",
+                    true
+                ],
+                [
+                    "2025.03.11 01:24",
+                    true
+                ],
+                [
+                    "2025.03.11 01:39",
+                    true
+                ],
+                [
+                    "2025.03.11 01:54",
+                    true
+                ],
+                [
+                    "2025.03.11 02:09",
+                    true
+                ],
+                [
+                    "2025.03.11 02:25",
+                    true
+                ],
+                [
+                    "2025.03.11 02:40",
+                    true
+                ],
+                [
+                    "2025.03.11 02:55",
+                    true
+                ],
+                [
+                    "2025.03.11 03:10",
+                    true
+                ],
+                [
+                    "2025.03.11 03:25",
+                    true
+                ],
+                [
+                    "2025.03.11 03:40",
+                    true
+                ],
+                [
+                    "2025.03.11 03:55",
+                    true
+                ],
+                [
+                    "2025.03.11 04:10",
+                    true
+                ],
+                [
+                    "2025.03.11 04:25",
+                    true
+                ],
+                [
+                    "2025.03.11 04:40",
+                    true
+                ],
+                [
+                    "2025.03.11 04:56",
+                    true
+                ],
+                [
+                    "2025.03.11 05:11",
+                    true
+                ],
+                [
+                    "2025.03.11 05:26",
+                    true
+                ]
+            ],
+            "healthy_percentage_overall": 94,
+            "connectivity": "All",
+            "__show_last_seen": false
+        },
+        {
+            "url": "https://nitter.net",
+            "domain": "nitter.net",
+            "points": 75,
+            "rss": false,
+            "recent_pings": [
+                1146,
+                1170,
+                947,
+                1091,
+                1070,
+                998,
+                915,
+                896,
+                940,
+                1099,
+                1243,
+                1185
+            ],
+            "ping_max": 1243,
+            "ping_min": 896,
+            "ping_avg": 1058,
+            "version": "2025.02.25-41fa47b",
+            "version_url": "https://github.com/zedeus/nitter/commit/41fa47b",
+            "healthy": true,
+            "last_healthy": "2025-03-11T05:26:16Z",
+            "is_upstream": true,
+            "is_latest_version": true,
+            "is_bad_host": false,
+            "country": "🇳🇱",
+            "recent_checks": [
+                [
+                    "2025.03.11 00:08",
+                    true
+                ],
+                [
+                    "2025.03.11 00:24",
+                    true
+                ],
+                [
+                    "2025.03.11 00:39",
+                    true
+                ],
+                [
+                    "2025.03.11 00:54",
+                    true
+                ],
+                [
+                    "2025.03.11 01:09",
+                    true
+                ],
+                [
+                    "2025.03.11 01:24",
+                    true
+                ],
+                [
+                    "2025.03.11 01:39",
+                    true
+                ],
+                [
+                    "2025.03.11 01:54",
+                    true
+                ],
+                [
+                    "2025.03.11 02:09",
+                    true
+                ],
+                [
+                    "2025.03.11 02:25",
+                    true
+                ],
+                [
+                    "2025.03.11 02:40",
+                    true
+                ],
+                [
+                    "2025.03.11 02:55",
+                    true
+                ],
+                [
+                    "2025.03.11 03:10",
+                    true
+                ],
+                [
+                    "2025.03.11 03:25",
+                    true
+                ],
+                [
+                    "2025.03.11 03:40",
+                    true
+                ],
+                [
+                    "2025.03.11 03:55",
+                    true
+                ],
+                [
+                    "2025.03.11 04:10",
+                    true
+                ],
+                [
+                    "2025.03.11 04:25",
+                    true
+                ],
+                [
+                    "2025.03.11 04:40",
+                    true
+                ],
+                [
+                    "2025.03.11 04:56",
+                    true
+                ],
+                [
+                    "2025.03.11 05:11",
+                    true
+                ],
+                [
+                    "2025.03.11 05:26",
+                    true
+                ]
+            ],
+            "healthy_percentage_overall": 90,
+            "connectivity": "IPv4",
+            "__show_last_seen": false
+        },
+        {
+            "url": "https://nitter.poast.org",
+            "domain": "nitter.poast.org",
+            "points": 75,
+            "rss": true,
+            "recent_pings": [
+                1621,
+                1739,
+                1586,
+                1537,
+                1620,
+                1705,
+                1518,
+                892,
+                1474,
+                1630,
+                1756,
+                6259
+            ],
+            "ping_max": 6259,
+            "ping_min": 892,
+            "ping_avg": 1795,
+            "version": "2025.02.25-41fa47b",
+            "version_url": "https://github.com/zedeus/nitter/commit/41fa47b",
+            "healthy": true,
+            "last_healthy": "2025-03-11T05:26:16Z",
+            "is_upstream": true,
+            "is_latest_version": true,
+            "is_bad_host": false,
+            "country": "🇺🇸",
+            "recent_checks": [
+                [
+                    "2025.03.11 00:08",
+                    true
+                ],
+                [
+                    "2025.03.11 00:24",
+                    true
+                ],
+                [
+                    "2025.03.11 00:39",
+                    true
+                ],
+                [
+                    "2025.03.11 00:54",
+                    true
+                ],
+                [
+                    "2025.03.11 01:09",
+                    true
+                ],
+                [
+                    "2025.03.11 01:24",
+                    true
+                ],
+                [
+                    "2025.03.11 01:39",
+                    true
+                ],
+                [
+                    "2025.03.11 01:54",
+                    true
+                ],
+                [
+                    "2025.03.11 02:09",
+                    true
+                ],
+                [
+                    "2025.03.11 02:25",
+                    true
+                ],
+                [
+                    "2025.03.11 02:40",
+                    true
+                ],
+                [
+                    "2025.03.11 02:55",
+                    true
+                ],
+                [
+                    "2025.03.11 03:10",
+                    true
+                ],
+                [
+                    "2025.03.11 03:25",
+                    true
+                ],
+                [
+                    "2025.03.11 03:40",
+                    true
+                ],
+                [
+                    "2025.03.11 03:55",
+                    true
+                ],
+                [
+                    "2025.03.11 04:10",
+                    true
+                ],
+                [
+                    "2025.03.11 04:25",
+                    true
+                ],
+                [
+                    "2025.03.11 04:40",
+                    true
+                ],
+                [
+                    "2025.03.11 04:56",
+                    true
+                ],
+                [
+                    "2025.03.11 05:11",
+                    true
+                ],
+                [
+                    "2025.03.11 05:26",
+                    true
+                ]
+            ],
+            "healthy_percentage_overall": 82,
+            "connectivity": "IPv4",
+            "__show_last_seen": false
+        },
+        {
+            "url": "https://xcancel.com",
+            "domain": "xcancel.com",
+            "points": 74,
+            "rss": false,
+            "recent_pings": [
+                86,
+                130,
+                91,
+                100,
+                120,
+                100,
+                958,
+                100,
+                890,
+                94,
+                1239,
+                95
+            ],
+            "ping_max": 1239,
+            "ping_min": 86,
+            "ping_avg": 333,
+            "version": "2025.02.22-5f27df9",
+            "version_url": "https://github.com/zedeus/nitter/commit/5f27df9",
+            "healthy": true,
+            "last_healthy": "2025-03-11T05:26:16Z",
+            "is_upstream": true,
+            "is_latest_version": false,
+            "is_bad_host": false,
+            "country": "🇺🇸",
+            "recent_checks": [
+                [
+                    "2025.03.11 00:08",
+                    true
+                ],
+                [
+                    "2025.03.11 00:24",
+                    true
+                ],
+                [
+                    "2025.03.11 00:39",
+                    true
+                ],
+                [
+                    "2025.03.11 00:54",
+                    true
+                ],
+                [
+                    "2025.03.11 01:09",
+                    true
+                ],
+                [
+                    "2025.03.11 01:24",
+                    true
+                ],
+                [
+                    "2025.03.11 01:39",
+                    true
+                ],
+                [
+                    "2025.03.11 01:54",
+                    true
+                ],
+                [
+                    "2025.03.11 02:09",
+                    true
+                ],
+                [
+                    "2025.03.11 02:25",
+                    true
+                ],
+                [
+                    "2025.03.11 02:40",
+                    true
+                ],
+                [
+                    "2025.03.11 02:55",
+                    true
+                ],
+                [
+                    "2025.03.11 03:10",
+                    true
+                ],
+                [
+                    "2025.03.11 03:25",
+                    true
+                ],
+                [
+                    "2025.03.11 03:40",
+                    true
+                ],
+                [
+                    "2025.03.11 03:55",
+                    true
+                ],
+                [
+                    "2025.03.11 04:10",
+                    true
+                ],
+                [
+                    "2025.03.11 04:25",
+                    true
+                ],
+                [
+                    "2025.03.11 04:40",
+                    true
+                ],
+                [
+                    "2025.03.11 04:56",
+                    true
+                ],
+                [
+                    "2025.03.11 05:11",
+                    true
+                ],
+                [
+                    "2025.03.11 05:26",
+                    true
+                ]
+            ],
+            "healthy_percentage_overall": 99,
+            "connectivity": "All",
+            "__show_last_seen": false
+        },
+        {
+            "url": "https://nitter.privacydev.net",
+            "domain": "nitter.privacydev.net",
+            "points": 71,
+            "rss": true,
+            "recent_pings": [
+                218,
+                153,
+                87,
+                170,
+                182,
+                146,
+                258,
+                201,
+                219,
+                81,
+                83,
+                109
+            ],
+            "ping_max": 258,
+            "ping_min": 81,
+            "ping_avg": 158,
+            "version": "2024.04.07-7350155",
+            "version_url": "https://github.com/zedeus/nitter/commit/7350155",
+            "healthy": true,
+            "last_healthy": "2025-03-11T05:26:16Z",
+            "is_upstream": true,
+            "is_latest_version": false,
+            "is_bad_host": true,
+            "country": "🇫🇷",
+            "recent_checks": [
+                [
+                    "2025.03.11 00:08",
+                    true
+                ],
+                [
+                    "2025.03.11 00:24",
+                    true
+                ],
+                [
+                    "2025.03.11 00:39",
+                    true
+                ],
+                [
+                    "2025.03.11 00:54",
+                    true
+                ],
+                [
+                    "2025.03.11 01:09",
+                    true
+                ],
+                [
+                    "2025.03.11 01:24",
+                    true
+                ],
+                [
+                    "2025.03.11 01:39",
+                    true
+                ],
+                [
+                    "2025.03.11 01:54",
+                    true
+                ],
+                [
+                    "2025.03.11 02:09",
+                    true
+                ],
+                [
+                    "2025.03.11 02:25",
+                    true
+                ],
+                [
+                    "2025.03.11 02:40",
+                    true
+                ],
+                [
+                    "2025.03.11 02:55",
+                    true
+                ],
+                [
+                    "2025.03.11 03:10",
+                    true
+                ],
+                [
+                    "2025.03.11 03:25",
+                    true
+                ],
+                [
+                    "2025.03.11 03:40",
+                    true
+                ],
+                [
+                    "2025.03.11 03:55",
+                    true
+                ],
+                [
+                    "2025.03.11 04:10",
+                    true
+                ],
+                [
+                    "2025.03.11 04:25",
+                    true
+                ],
+                [
+                    "2025.03.11 04:40",
+                    true
+                ],
+                [
+                    "2025.03.11 04:56",
+                    true
+                ],
+                [
+                    "2025.03.11 05:11",
+                    true
+                ],
+                [
+                    "2025.03.11 05:26",
+                    true
+                ]
+            ],
+            "healthy_percentage_overall": 95,
+            "connectivity": "IPv4",
+            "__show_last_seen": false
+        },
+        {
+            "url": "https://nitter.lucabased.xyz",
+            "domain": "nitter.lucabased.xyz",
+            "points": 0,
+            "rss": false,
+            "recent_pings": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "ping_max": null,
+            "ping_min": null,
+            "ping_avg": null,
+            "version": null,
+            "version_url": null,
+            "healthy": false,
+            "last_healthy": "2025-01-22T05:10:40Z",
+            "is_upstream": false,
+            "is_latest_version": false,
+            "is_bad_host": false,
+            "country": "🇩🇪",
+            "recent_checks": [
+                [
+                    "2025.03.11 00:08",
+                    false
+                ],
+                [
+                    "2025.03.11 00:24",
+                    false
+                ],
+                [
+                    "2025.03.11 00:39",
+                    false
+                ],
+                [
+                    "2025.03.11 00:54",
+                    false
+                ],
+                [
+                    "2025.03.11 01:09",
+                    false
+                ],
+                [
+                    "2025.03.11 01:24",
+                    false
+                ],
+                [
+                    "2025.03.11 01:39",
+                    false
+                ],
+                [
+                    "2025.03.11 01:54",
+                    false
+                ],
+                [
+                    "2025.03.11 02:09",
+                    false
+                ],
+                [
+                    "2025.03.11 02:25",
+                    false
+                ],
+                [
+                    "2025.03.11 02:40",
+                    false
+                ],
+                [
+                    "2025.03.11 02:55",
+                    false
+                ],
+                [
+                    "2025.03.11 03:10",
+                    false
+                ],
+                [
+                    "2025.03.11 03:25",
+                    false
+                ],
+                [
+                    "2025.03.11 03:40",
+                    false
+                ],
+                [
+                    "2025.03.11 03:55",
+                    false
+                ],
+                [
+                    "2025.03.11 04:10",
+                    false
+                ],
+                [
+                    "2025.03.11 04:25",
+                    false
+                ],
+                [
+                    "2025.03.11 04:40",
+                    false
+                ],
+                [
+                    "2025.03.11 04:56",
+                    false
+                ],
+                [
+                    "2025.03.11 05:11",
+                    false
+                ],
+                [
+                    "2025.03.11 05:26",
+                    false
+                ]
+            ],
+            "healthy_percentage_overall": 32,
+            "connectivity": null,
+            "__show_last_seen": true
+        }
+    ],
+    "last_update": "2025-03-11T05:26:22.778249813Z",
+    "latest_commit": "41fa47bfbf3917e9b3ac4f7b49c89a75a7a2bd44"
+}
