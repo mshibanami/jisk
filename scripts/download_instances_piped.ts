@@ -6,7 +6,7 @@ import { writeFile } from 'fs/promises';
 
 (async () => {
     // Fetch the Markdown file
-    const response = await fetch('https://raw.githubusercontent.com/wiki/TeamPiped/Piped/Instances.md');
+    const response = await fetch('https://raw.githubusercontent.com/TeamPiped/documentation/refs/heads/main/content/docs/public-instances/index.md');
     const markdown = await response.text();
 
     // Parse the Markdown to generate an AST
@@ -83,7 +83,11 @@ import { writeFile } from 'fs/promises';
     for (const apiUrl in instanceDataMap) {
         const instanceData = instanceDataMap[apiUrl];
         const summaryData = summaryDataMap[apiUrl] || null;
-
+        if (summaryData == null) {
+            console.warn(`No summary data found for ${apiUrl}`);
+            continue;
+        }
+        
         // Remove unnecessary fields
         delete summaryData['dailyMinutesDown'];
         delete summaryData['uptimeDay'];
