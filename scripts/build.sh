@@ -8,13 +8,17 @@ cd "$(dirname "$0")/.."
 
 npx tsc
 
-# Specify ELEVENTY_ENV to use the correct environment
 npx eleventy
 
-# OUT_DIR="./out"
-#
-# Minify
-# for file in "$OUT_DIR"/*.{html,js,css}; do
-#     [ -f "$file" ] || continue
-#     npx minify "$file" >"${file}.min" && mv "${file}.min" "$file"
-# done
+OUT_DIR="./out"
+
+# Compression
+for file in "$OUT_DIR"/*.html; do
+    [ -f "$file" ] || continue
+    npx html-minifier \
+        --collapse-whitespace \
+        --remove-comments \
+        --minify-css true \
+        --minify-js true \
+        "$file" -o "${file}.min" && mv "${file}.min" "$file"
+done
